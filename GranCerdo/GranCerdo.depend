@@ -1,0 +1,22 @@
+# depslib dependency file v1.0
+1655156255 source:c:\users\yeppi\documents\laboratorio1\tp1laboratorio\grancerdo\main.cpp
+	<iostream>
+	<clocale>
+	<unistd.h>
+	<string>
+	<cstdlib>
+	<ctime>
+	"GranCerdo.h"
+
+1655067387 source:c:\users\yeppi\documents\laboratorio1\tp1laboratorio\grancerdo\grancerdofile.cpp
+	<iostream>
+	<clocale>
+	<unistd.h>
+	<string>
+	<cstdlib>
+	<ctime>
+	"GranCerdo.h"
+
+1655156134 c:\users\yeppi\documents\laboratorio1\tp1laboratorio\grancerdo\grancerdo.h
+	<string>
+
