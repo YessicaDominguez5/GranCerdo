@@ -4,6 +4,7 @@
 #include <string>
 #include <cstdlib>
 #include <ctime>
+#include <cctype>
 
 using namespace std;
 #include "GranCerdo.h"
@@ -17,10 +18,10 @@ void MostrarPresentacion()
     cout << "**                                                                                                     **" << endl;
     cout << "**                                                                                                     **" << endl;
     cout << "**                                                                                                     **" << endl;
-    cout << "**                                        BIENVENIDOS                                                  **" << endl;
-    cout << "**                                                                                                     **" << endl;
-    cout << "**                                            AL                                                       **" << endl;
-    cout << "**                                                                                                     **" << endl;
+    cout << "**                                        BIENVENIDOS                        ^^--                      **" << endl;
+    cout << "**                                                                        E  °    .                    **" << endl;
+    cout << "**                                            AL                           .       . ~                 **" << endl;
+    cout << "**                                                                          w . w./                    **" << endl;
     cout << "**                                        GRAN CERDO                                                   **" << endl;
     cout << "**                                                                                                     **" << endl;
     cout << "**                                                                                                     **" << endl;
@@ -66,7 +67,7 @@ int QuienEmpieza()
 {
     int vecdados1[2];
     int vecdados2[2];
-    int acu1 = 0, acu2 = 0, mayordado1 = 0, mayordado2 = 0, mayordado = 0;
+    int acu1 = 0, acu2 = 0, mayordado1 = 0, mayordado2 = 0;
     int jugador = 0;
     bool salir = true;
 

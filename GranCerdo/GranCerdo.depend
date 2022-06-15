@@ -20,3 +20,25 @@
 1655156134 c:\users\yeppi\documents\laboratorio1\tp1laboratorio\grancerdo\grancerdo.h
 	<string>
 
+1655259284 source:c:\users\juani\desktop\grancerdo\laboratorio1\tp1laboratorio\grancerdo\grancerdofile.cpp
+	<iostream>
+	<clocale>
+	<unistd.h>
+	<string>
+	<cstdlib>
+	<ctime>
+	<cctype>
+	"GranCerdo.h"
+
+1655249278 c:\users\juani\desktop\grancerdo\laboratorio1\tp1laboratorio\grancerdo\grancerdo.h
+
+1655257719 source:c:\users\juani\desktop\grancerdo\laboratorio1\tp1laboratorio\grancerdo\main.cpp
+	<iostream>
+	<clocale>
+	<unistd.h>
+	<string>
+	<cstdlib>
+	<ctime>
+	<cctype>
+	"GranCerdo.h"
+
