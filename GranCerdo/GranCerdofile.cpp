@@ -79,6 +79,7 @@ int QuienEmpieza()
             vecdados1[i] = (rand()% 6) + 1;
             acu1 += vecdados1[i];
             cout << "Dado " << i + 1 << " del cerdo 1: " << vecdados1[i] << endl;
+            cout << "----------------------" << endl;
 
         }
         for (int i = 0 ; i < 2; i++ )
@@ -86,6 +87,7 @@ int QuienEmpieza()
             vecdados2[i] = (rand()% 6) + 1;
             acu2 += vecdados2[i];
             cout << "Dado " << i + 1 << " del cerdo 2: " << vecdados2[i] << endl;
+            cout << "----------------------" << endl;
 
         }
 
