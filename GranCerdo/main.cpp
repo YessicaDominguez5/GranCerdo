@@ -20,7 +20,7 @@ int main()
 
     char menu;
     string cerdo1, cerdo2;
-    bool salir = false;
+    bool salir;
 
     sleep(3); // frena 3 segundos la pantalla}
 
@@ -58,14 +58,14 @@ int main()
             cerdo = QuienEmpieza();
 
             cout << endl << "............................" << endl << endl;
-            cout << "Empieza el cerdo: " << endl;
+            cout << "  Empieza el cerdo: " << endl;
             if (cerdo == 1)
             {
-                cout << endl << cerdo1 << endl;
+                cout << endl << "    " << cerdo1 << endl;
             }
             else
             {
-                cout << endl << cerdo2 << endl;
+                cout << endl << "    " << cerdo2 << endl;
                 cerdoaux = cerdo1;
                 cerdo1 = cerdo2;
                 cerdo2 = cerdoaux;
@@ -78,6 +78,8 @@ int main()
             int acutrufastotalesc1 = 0, acutrufastotalesc2 = 0, acutrufaslanzamientos = 0, contlanzamientos1 = 0,contlanzamientos2 = 0, vecrandnum[2] = {}, vecrandnumtres[3] = {}, acutrufasronda1 = 0, acutrufasronda2 = 0;
             char continuar;
             string cerdoactual;
+            bool noContinuar;
+
 
 
             for(int r = 1 ; r <= 5; r ++) // Rondas
@@ -88,8 +90,10 @@ int main()
                 acutrufasronda1 = 0;
                 acutrufasronda2 = 0;
 
-                for(int c = 1; c <= 2; c++) // Jugadores
-                {
+                    for(int c = 1; c <= 2; c++) // Jugadores
+                    {
+                        noContinuar = false;
+
 
                     if(c == 1)
                     {
@@ -102,236 +106,256 @@ int main()
                         cerdoactual = cerdo2;
                     }
 
-
-                    cout << "Escriba S para jugar: ";
-                    cin >> continuar;
-                    continuar = toupper(continuar);
-
-
-                    while( continuar == 'S' || continuar =='s' ) //Lanzamientos
+                    while(!noContinuar)
                     {
-                        system("cls");
-                        if(c == 1)
-                        {
-                            contlanzamientos1++;
-                        }
-                        else
-                        {
-                            contlanzamientos2++;
-                        }
 
-                        for (int i = 0; i < 2; i++)
+                        cout << "¿CONTINUAR? (S/N) " << endl;
+                        cin >> continuar;
+                        continuar = toupper(continuar);
+
+                        switch(continuar)
                         {
 
-                            vecrandnum[i] = 0;
+                        case 'S':
 
-                        }
-
-
-                        if (acutrufastotalesc1 < 50 && acutrufastotalesc2 < 50)
-                        {
-
-                            for (int i = 0; i < 2; i++)
+                            system("cls");
+                            if(c == 1)
                             {
-
-                                vecrandnum[i] = (rand()% 6)+ 1;
-
-                            }
-                        }
-                        else
-                        {
-
-
-                            for (int i = 0; i < 3; i++)
-                            {
-
-                                vecrandnumtres[i] = (rand()% 6)+ 1;
-
-
-                            }
-                        }
-
-
-                        cout << "*********************************************************************************************************" << endl;
-                        cout << "*********************************************************************************************************" << endl;
-                        cout << " ------------------------------------------------------------------------------------------------------  " << endl;
-                        cout << "                                         GRAN CERDO                                                      " << endl;
-                        cout << " ------------------------------------------------------------------------------------------------------  " << endl;
-                        cout << "                         " << cerdo1 << ": " << acutrufastotalesc1 << " TRUFAS ACUMULADAS.               " << endl;
-                        cout << "                                                                                                         " << endl;
-                        cout << "                         " << cerdo2 << ": " << acutrufastotalesc2 << " TRUFAS ACUMULADAS.               " << endl;
-                        cout << "                                                                                                         " << endl;
-                        cout << " ------------------------------------------------------------------------------------------------------  " << endl;
-                        cout << "                                                                                                         " << endl;
-                        cout << "                               TURNO DE:  " << cerdoactual << "                                          " << endl;
-                        cout << "                                                                                                         " << endl;
-                        cout << "       RONDA #  " << r << "                                                                              " << endl;
-                        cout << "                                                                                                         " << endl;
-                        cout << "       TRUFAS DE LA RONDA:  " << acutrufaslanzamientos << "                                                     " << endl;
-                        cout << "                                                                                                         " << endl;
-                        if(cerdoactual == cerdo1)
-                        {
-                            cout << "       LANZAMIENTOS: " << contlanzamientos1 - 1 << endl;
-                        }
-                        else
-                        {
-                            cout << "       LANZAMIENTOS: " << contlanzamientos2 - 1 << endl;
-                        }
-                        cout << " -----------------------------------------------------------------------------------------------------  " << endl;
-
-
-                        if((vecrandnum[0] != vecrandnum[1]) && (vecrandnum[0] != 1) && (vecrandnum[1] != 1)) // caras distintas y ninguna es as
-                        {
-                            acutrufaslanzamientos = vecrandnum[0] + vecrandnum[1];
-                            if (cerdoactual == cerdo1)
-                            {
-                                acutrufastotalesc1 += acutrufaslanzamientos;
-                                acutrufasronda1 += acutrufaslanzamientos;
+                                contlanzamientos1++;
                             }
                             else
                             {
-                                acutrufastotalesc2 += acutrufaslanzamientos;
-                                acutrufasronda2 += acutrufaslanzamientos;
+                                contlanzamientos2++;
                             }
 
-                        }
-                        else if((vecrandnum[0] == vecrandnum[1]) && (vecrandnum[0] != 1) && (vecrandnum[1] != 1)) // caras iguales y ninguna es as
-                        {
 
-
-
-                            cout << "OINK del jugador "<< cerdoactual << endl;
-
-                            sleep(3);
-
-                            acutrufaslanzamientos = (vecrandnum[0] * 2) + (vecrandnum[1] * 2);
-                            if (cerdoactual == cerdo1)
+                            if (acutrufastotalesc1 < 50 && acutrufastotalesc2 < 50) //jugar con 2 dados
                             {
-                                acutrufastotalesc1 += acutrufaslanzamientos;
-                                acutrufasronda1 += acutrufaslanzamientos;
+
+                                for (int i = 0; i < 2; i++)
+                                {
+                                    vecrandnum[i] = 0;
+
+                                    vecrandnum[i] = (rand()% 6)+ 1;
+
+                                }
                             }
                             else
                             {
-                                acutrufastotalesc2 += acutrufaslanzamientos;
-                                acutrufasronda2 += acutrufaslanzamientos;
+
+
+                                for (int i = 0; i < 3; i++) // jugar con 3 dados
+                                {
+
+                                    vecrandnumtres[i] = (rand()% 6)+ 1;
+
+
+                                }
                             }
-
-
-
-                        }
-                        else if ((vecrandnum[0] != vecrandnum[1]) && ((vecrandnum[0] == 1) || (vecrandnum[1] == 1))) // caras distintas y ha un as
-                        {
-                            acutrufaslanzamientos = 0;
-
-                           if (cerdoactual == cerdo1)
-                            {
-                                acutrufastotalesc1 += acutrufaslanzamientos;
-                                acutrufasronda1 += acutrufaslanzamientos;
-                            }
-                            else
-                            {
-                                acutrufastotalesc2 += acutrufaslanzamientos;
-                                acutrufasronda2 += acutrufaslanzamientos;
-                            }
-
-                        }
-
-                        else if ((vecrandnum[0] == 1) && (vecrandnum[1] == 1))// caras iguales  son ases
-                        {
-
-
-                            cout << "CERDO "<< cerdoactual <<" HUNDIDO EN EL BARRO!" << endl;
-
-                            sleep(3);
+                            cout << "                                                                                                         " << endl;
+                            cout << " ------------------------------------------------------------------------------------------------------  " << endl;
+                            cout << "                                         GRAN CERDO                                                      " << endl;
+                            cout << " ------------------------------------------------------------------------------------------------------  " << endl;
+                            cout << "                         " << cerdo1 << ": " << acutrufastotalesc1 << " TRUFAS ACUMULADAS.               " << endl;
+                            cout << "                                                                                                         " << endl;
+                            cout << "                         " << cerdo2 << ": " << acutrufastotalesc2 << " TRUFAS ACUMULADAS.               " << endl;
+                            cout << "                                                                                                         " << endl;
+                            cout << " ------------------------------------------------------------------------------------------------------  " << endl;
+                            cout << "                                                                                                         " << endl;
+                            cout << "                               TURNO DE:  " << cerdoactual << "                                          " << endl;
+                            cout << "                                                                                                         " << endl;
+                            cout << "       RONDA #  " << r << "                                                                              " << endl;
+                            cout << "                                                                                                         " << endl;
 
                             if (cerdoactual == cerdo1)
                             {
-                                acutrufaslanzamientos = 0;
-                                acutrufastotalesc1 = 0;
+                                cout << "TRUFAS DE LA RONDA: " << acutrufasronda1 << endl;
                             }
                             else
                             {
-                                acutrufaslanzamientos = 0;
-                                acutrufastotalesc2 = 0;
+                                cout << "TRUFAS DE LA RONDA: " << acutrufasronda2 << endl;
+                            }
+
+                            cout << "                                                                                                         " << endl;
+                            if(cerdoactual == cerdo1)
+                            {
+                                cout << "       LANZAMIENTOS: " << contlanzamientos1 - 1 << endl;
+                            }
+                            else
+                            {
+                                cout << "       LANZAMIENTOS: " << contlanzamientos2 - 1 << endl;
+                            }
+                            cout << "                                                                                                         " << endl;
+
+
+
+
+                            if((vecrandnum[0] != vecrandnum[1]) && (vecrandnum[0] != 1) && (vecrandnum[1] != 1)) // caras distintas y ninguna es as
+                            {
+                                acutrufaslanzamientos = vecrandnum[0] + vecrandnum[1];
+                                if (cerdoactual == cerdo1)
+                                {
+                                    acutrufastotalesc1 += acutrufaslanzamientos;
+                                    acutrufasronda1 += acutrufaslanzamientos;
+                                }
+                                else
+                                {
+                                    acutrufastotalesc2 += acutrufaslanzamientos;
+                                    acutrufasronda2 += acutrufaslanzamientos;
+                                }
+
+                            }
+                            else if((vecrandnum[0] == vecrandnum[1]) && (vecrandnum[0] != 1) && (vecrandnum[1] != 1)) // caras iguales y ninguna es as
+                            {
+                                cout << "                                 " << endl;
+                                cout << "**********************" << endl;
+                                cout << "OINK del cerdo " << cerdoactual << endl;
+                                cout << "********************** " << endl;
+
+                                acutrufaslanzamientos = (vecrandnum[0] * 2) + (vecrandnum[1] * 2);
+
+                                if (cerdoactual == cerdo1)
+                                {
+                                    acutrufastotalesc1 += acutrufaslanzamientos;
+                                    acutrufasronda1 += acutrufaslanzamientos;
+                                }
+                                else
+                                {
+                                    acutrufastotalesc2 += acutrufaslanzamientos;
+                                    acutrufasronda2 += acutrufaslanzamientos;
+                                }
+
+                            }
+                            else if ((vecrandnum[0] != vecrandnum[1]) && ((vecrandnum[0] == 1) || (vecrandnum[1] == 1))) // caras distintas y hay un as
+                            {
+
+
+                                if (cerdoactual == cerdo1)
+                                {
+                                    acutrufaslanzamientos = 0;
+                                    acutrufasronda1 += acutrufaslanzamientos;
+                                    acutrufastotalesc1 -= acutrufasronda1;
+
+
+                                }
+                                else
+                                {
+                                    acutrufaslanzamientos = 0;
+                                    acutrufasronda2 += acutrufaslanzamientos;
+                                    acutrufastotalesc2 -= acutrufasronda2;
+
+
+
+                                }
+
+                            }
+
+                            else if ((vecrandnum[0] == 1) && (vecrandnum[1] == 1))// caras iguales  son ases
+                            {
+
+                                cout << "                                 " << endl;
+                                cout << "************************************" << endl;
+                                cout << "CERDO "<< cerdoactual <<" HUNDIDO EN EL BARRO!" << endl;
+                                cout << "                                 " << endl;
+                                cout << "************************************" << endl;
+
+                                if (cerdoactual == cerdo1)
+                                {
+                                    acutrufaslanzamientos = 0;
+                                    acutrufastotalesc1 = 0;
+                                    acutrufasronda1 = 0;
+                                }
+                                else
+                                {
+                                    acutrufaslanzamientos = 0;
+                                    acutrufastotalesc2 = 0;
+                                    acutrufasronda2 = 0;
+                                }
+
+
                             }
 
 
-                        }
 
 
+                            cout << "---------------------------------------------------------------------------------------------------------" << endl;
+                            cout << "                                                                                                         " << endl;
+                            if(cerdoactual == cerdo1)
+                            {
+                                cout << "      LANZAMIENTO # " << contlanzamientos1 << endl;
+                            }
+                            else
+                            {
+                                cout << "      LANZAMIENTO # " << contlanzamientos2 << endl;
+                            }
 
-                        cout << "*********************************************************************************************************" << endl;
-                        cout << "                                                                                                         " << endl;
-                        if(cerdoactual == cerdo1)
-                        {
-                            cout << "      LANZAMIENTO # " << contlanzamientos1 << endl;
-                        }
-                        else
-                        {
-                            cout << "      LANZAMIENTO # " << contlanzamientos2 << endl;
-                        }
-
-                        cout << "                                                                                                         " << endl;
-                        cout << "                                                                                                         " << endl;
-                        cout << "                                                                                                         " << endl;
-                        cout << "     Dado 1:    " << vecrandnum[0] << "         Dado 2:       " << vecrandnum[1] << "                    " << endl;
-                        cout << "                                                                                                         " << endl;
-                        cout << "                                                                                                         " << endl;
-                        cout << "                                                                                                         " << endl;
-                        cout << "                             ¡SUMASTE " << acutrufaslanzamientos   << " TRUFAS!!!                               " << endl;
-                        cout << "                                                                                                         " << endl;
-                        cout << "                                                                                                         " << endl;
-                        cout << "        ¿CONTINUAR? (S/N)                                                                                " << endl;
-                        cout << "*********************************************************************************************************" << endl;
-                        cout << "*********************************************************************************************************" << endl;
+                            cout << "                                                                                                         " << endl;
+                            cout << "                                                                                                         " << endl;
+                            cout << "                                                                                                         " << endl;
+                            cout << "     Dado 1:    " << vecrandnum[0] << "         Dado 2:       " << vecrandnum[1] << "                    " << endl;
+                            cout << "                                                                                                         " << endl;
+                            cout << "                                                                                                         " << endl;
+                            cout << "                                                                                                         " << endl;
+                            cout << "                             ¡SUMASTE " << acutrufaslanzamientos   << " TRUFAS!!!                        " << endl;
+                            cout << "                                                                                                         " << endl;
+                            cout << "                                                                                                         " << endl;
+                            cout << "                                                                                                         " << endl;
+                            cout << "---------------------------------------------------------------------------------------------------------" << endl;
 
 
 
 
-                        if((vecrandnum[0] != vecrandnum[1]) && (vecrandnum[0] != 1) && (vecrandnum[1] != 1))
-                        {
-                            cin >> continuar;
+                            if((vecrandnum[0] == vecrandnum[1]) && (vecrandnum[0] != 1) && (vecrandnum[1] != 1))//oink
+                            {
 
-                        }
-
-                        else if((vecrandnum[0] == vecrandnum[1]) && (vecrandnum[0] != 1) && (vecrandnum[1] != 1))
-                        {
-
-                            continuar = 'S';
-
-                            cout << "Tire nuevamente" << endl;
-
-                            system("pause");
+                                cout << "Tire nuevamente" << endl;
+                                sleep(3);
 
 
-                        }
-                        else if ((vecrandnum[0] != vecrandnum[1]) && ((vecrandnum[0] == 1) || (vecrandnum[1] == 1)))
-                        {
+                            }
+                            else if ((vecrandnum[0] != vecrandnum[1]) && ((vecrandnum[0] == 1) || (vecrandnum[1] == 1)))
+                            {
 
-                            continuar = 'N';
-
-                            cout << "Continúa el siguiente cerdo" << endl;
-
-                            system("pause");
+                                noContinuar = true;
 
 
-                        }
-                        else if ((vecrandnum[0] == 1) && (vecrandnum[1] == 1))
-                        {
-                            continuar = 'N';
+                                cout << "Continúa el siguiente cerdo" << endl;
 
-                            cout << "Continúa el siguiente cerdo" << endl;
-
-                            system("pause");
-                        }
+                                sleep(3);
 
 
 
-                    }
+                            }
+                            else if ((vecrandnum[0] == 1) && (vecrandnum[1] == 1))
+                            {
+                                noContinuar = true;
 
-                }
+                                cout << "Continúa el siguiente cerdo" << endl;
+                                sleep(3);
+                            }
+                            break;
 
-            }
+                        case 'N':
+
+                            system("cls");
+
+
+                        cout << "Turno del próximo cerdo" << endl;
+                        sleep(3);
+                            noContinuar = true;
+                            break;
+
+                        default:
+                            cout << "¿Desea continuar lanzando?" << endl;
+                            break;
+                        } // switch continuar
+
+
+                    }// while no continuar
+
+                } // for c
+
+            } // for r
 
 
             break;
