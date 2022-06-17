@@ -73,12 +73,13 @@ int main()
             }
 
             cout << endl << "............................" << endl;
+            cout << endl << "                            " << endl;
 
 ///
             int acutrufastotalesc1 = 0, acutrufastotalesc2 = 0, acutrufaslanzamientos = 0, contlanzamientos1 = 0,contlanzamientos2 = 0, vecrandnum[2] = {}, vecrandnumtres[3] = {}, acutrufasronda1 = 0, acutrufasronda2 = 0;
             char continuar;
             string cerdoactual;
-            bool noContinuar;
+            bool noContinuar, bandera;
 
 
 
@@ -90,9 +91,9 @@ int main()
                 acutrufasronda1 = 0;
                 acutrufasronda2 = 0;
 
-                    for(int c = 1; c <= 2; c++) // Jugadores
-                    {
-                        noContinuar = false;
+                for(int c = 1; c <= 2; c++) // Jugadores
+                {
+                    noContinuar = false;
 
 
                     if(c == 1)
@@ -108,10 +109,20 @@ int main()
 
                     while(!noContinuar)
                     {
+                        if (!bandera)
+                        {
 
-                        cout << "¿CONTINUAR? (S/N) " << endl;
-                        cin >> continuar;
-                        continuar = toupper(continuar);
+                            system("pause");
+                            continuar = 'S';
+                            bandera = true;
+                        }
+                        else
+                        {
+
+                            cout << "¿CONTINUAR? (S/N) " << endl;
+                            cin >> continuar;
+                            continuar = toupper(continuar);
+                        }
 
                         switch(continuar)
                         {
@@ -169,11 +180,11 @@ int main()
 
                             if (cerdoactual == cerdo1)
                             {
-                                cout << "TRUFAS DE LA RONDA: " << acutrufasronda1 << endl;
+                                cout << "  TRUFAS DE LA RONDA: " << acutrufasronda1 << endl;
                             }
                             else
                             {
-                                cout << "TRUFAS DE LA RONDA: " << acutrufasronda2 << endl;
+                                cout << "  TRUFAS DE LA RONDA: " << acutrufasronda2 << endl;
                             }
 
                             cout << "                                                                                                         " << endl;
@@ -225,7 +236,9 @@ int main()
                                     acutrufasronda2 += acutrufaslanzamientos;
                                 }
 
-                            }
+                                bandera = false;
+
+                                }
                             else if ((vecrandnum[0] != vecrandnum[1]) && ((vecrandnum[0] == 1) || (vecrandnum[1] == 1))) // caras distintas y hay un as
                             {
 
@@ -235,6 +248,7 @@ int main()
                                     acutrufaslanzamientos = 0;
                                     acutrufasronda1 += acutrufaslanzamientos;
                                     acutrufastotalesc1 -= acutrufasronda1;
+                                    acutrufasronda1 = 0;
 
 
                                 }
@@ -243,10 +257,14 @@ int main()
                                     acutrufaslanzamientos = 0;
                                     acutrufasronda2 += acutrufaslanzamientos;
                                     acutrufastotalesc2 -= acutrufasronda2;
+                                    acutrufasronda2 = 0;
 
 
 
                                 }
+                                bandera = false;
+
+
 
                             }
 
@@ -272,6 +290,7 @@ int main()
                                     acutrufasronda2 = 0;
                                 }
 
+                                bandera = false;
 
                             }
 
@@ -298,22 +317,29 @@ int main()
                             cout << "                                                                                                         " << endl;
                             cout << "                             ¡SUMASTE " << acutrufaslanzamientos   << " TRUFAS!!!                        " << endl;
                             cout << "                                                                                                         " << endl;
+
+                            if (c == 1)
+                            {
+                                cout << "                                                     TRUFAS DE LA RONDA: " << acutrufasronda1 << endl;
+                            }
+                            if (c == 2)
+                            {
+                                cout << "                                                     TRUFAS DE LA RONDA: " << acutrufasronda2 << endl;
+                            }
+
+                            cout << "                                                                                                         " << endl;
                             cout << "                                                                                                         " << endl;
                             cout << "                                                                                                         " << endl;
                             cout << "---------------------------------------------------------------------------------------------------------" << endl;
 
-
-
-
-                            if((vecrandnum[0] == vecrandnum[1]) && (vecrandnum[0] != 1) && (vecrandnum[1] != 1))//oink
+                            if((vecrandnum[0] == vecrandnum[1]) && (vecrandnum[0] != 1) && (vecrandnum[1] != 1))                 // caras iguales y ninguna es as
                             {
 
                                 cout << "Tire nuevamente" << endl;
-                                sleep(3);
 
 
                             }
-                            else if ((vecrandnum[0] != vecrandnum[1]) && ((vecrandnum[0] == 1) || (vecrandnum[1] == 1)))
+                            else if ((vecrandnum[0] != vecrandnum[1]) && ((vecrandnum[0] == 1) || (vecrandnum[1] == 1)))    //caras distintas y alguno es 1
                             {
 
                                 noContinuar = true;
@@ -321,18 +347,20 @@ int main()
 
                                 cout << "Continúa el siguiente cerdo" << endl;
 
-                                sleep(3);
 
 
 
                             }
-                            else if ((vecrandnum[0] == 1) && (vecrandnum[1] == 1))
+                            else if ((vecrandnum[0] == 1) && (vecrandnum[1] == 1))  // caras iguales  son ases
                             {
                                 noContinuar = true;
 
                                 cout << "Continúa el siguiente cerdo" << endl;
-                                sleep(3);
+
+
                             }
+
+
                             break;
 
                         case 'N':
@@ -340,9 +368,12 @@ int main()
                             system("cls");
 
 
-                        cout << "Turno del próximo cerdo" << endl;
-                        sleep(3);
+                            cout << "Turno del próximo cerdo" << endl;
+
                             noContinuar = true;
+                            bandera = false;
+
+
                             break;
 
                         default:
