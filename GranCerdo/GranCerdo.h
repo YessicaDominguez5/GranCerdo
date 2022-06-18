@@ -20,7 +20,7 @@ void MostrarTablero(int acutrufastotalesc1,int acutrufastotalesc2, string cerdo1
 
 void MostrarJugada(string cerdoactual, string cerdo1, int contlanzamientos1, int contlanzamientos2, int vecrandnum[2],int acutrufaslanzamientos, int c, int acutrufasronda1, int acutrufasronda2, bool conTres);
 
-void MostrarDados(int vecrandnum[3]);
+void MostrarDados(int num);
 
 
 

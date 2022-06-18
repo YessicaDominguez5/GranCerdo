@@ -103,7 +103,7 @@ void jugar()
     int acutrufastotalesc1 = 0, acutrufastotalesc2 = 0, acutrufaslanzamientos = 0, contlanzamientos1 = 0,contlanzamientos2 = 0, vecrandnum[3] = {}, acutrufasronda1 = 0, acutrufasronda2 = 0;
     char continuar;
     string cerdoactual;
-    bool noContinuar, bandera, hundido, conTres;
+    bool noContinuar, bandera, hundido = false, conTres;
 
 
 
@@ -177,6 +177,7 @@ void jugar()
                     }
                     else
                     {
+                        conTres = true;
 
 
                         for (int i = 0; i < 3; i++) // jugar con 3 dados
@@ -185,7 +186,6 @@ void jugar()
                             vecrandnum[i] = 0;
 
                             vecrandnum[i] = (rand()% 6)+ 1;
-                            conTres = true;
 
 
                         }
@@ -212,76 +212,177 @@ void jugar()
                     cout << "                                                                                                         " << endl;
 
 
-
-
-                    if((vecrandnum[0] != vecrandnum[1]) && (vecrandnum[0] != 1) && (vecrandnum[1] != 1)) // caras distintas y ninguna es as
+                    if(!conTres) // si hay que jugar con 2 dados
                     {
-                        acutrufaslanzamientos = vecrandnum[0] + vecrandnum[1];
-                        if (cerdoactual == cerdo1)
+
+                        if((vecrandnum[0] != vecrandnum[1]) && (vecrandnum[0] != 1) && (vecrandnum[1] != 1)) // caras distintas y ninguna es as
                         {
-                            acutrufastotalesc1 += acutrufaslanzamientos;
-                            acutrufasronda1 += acutrufaslanzamientos;
+                            acutrufaslanzamientos = vecrandnum[0] + vecrandnum[1];
+                            if (cerdoactual == cerdo1)
+                            {
+                                acutrufastotalesc1 += acutrufaslanzamientos;
+                                acutrufasronda1 += acutrufaslanzamientos;
+                            }
+                            else
+                            {
+                                acutrufastotalesc2 += acutrufaslanzamientos;
+                                acutrufasronda2 += acutrufaslanzamientos;
+                            }
+
                         }
-                        else
+                        else if((vecrandnum[0] == vecrandnum[1]) && (vecrandnum[0] != 1) && (vecrandnum[1] != 1)) // caras iguales y ninguna es as
                         {
-                            acutrufastotalesc2 += acutrufaslanzamientos;
-                            acutrufasronda2 += acutrufaslanzamientos;
+                            cout << "                                 " << endl;
+                            cout << "**********************" << endl;
+                            cout << "OINK del cerdo " << cerdoactual << endl;
+                            cout << "********************** " << endl;
+
+                            acutrufaslanzamientos = (vecrandnum[0] * 2) + (vecrandnum[1] * 2);
+
+                            if (cerdoactual == cerdo1)
+                            {
+                                acutrufastotalesc1 += acutrufaslanzamientos;
+                                acutrufasronda1 += acutrufaslanzamientos;
+                            }
+                            else
+                            {
+                                acutrufastotalesc2 += acutrufaslanzamientos;
+                                acutrufasronda2 += acutrufaslanzamientos;
+                            }
+
+                            bandera = false;
+
+                        }
+                        else if ((vecrandnum[0] != vecrandnum[1]) && ((vecrandnum[0] == 1) || (vecrandnum[1] == 1))) // caras distintas y hay un as
+                        {
+
+
+                            if (cerdoactual == cerdo1)
+                            {
+                                acutrufaslanzamientos = 0;
+                                acutrufasronda1 += acutrufaslanzamientos;
+                                acutrufastotalesc1 -= acutrufasronda1;
+                                acutrufasronda1 = 0;
+
+
+                            }
+                            else
+                            {
+                                acutrufaslanzamientos = 0;
+                                acutrufasronda2 += acutrufaslanzamientos;
+                                acutrufastotalesc2 -= acutrufasronda2;
+                                acutrufasronda2 = 0;
+
+
+
+                            }
+                            bandera = false;
+
+
+
                         }
 
+                        else if ((vecrandnum[0] == 1) && (vecrandnum[1] == 1))// caras iguales  son ases
+                        {
+
+                            cout << "                                 " << endl;
+                            cout << "************************************" << endl;
+                            cout << "CERDO "<< cerdoactual <<" HUNDIDO EN EL BARRO!" << endl;
+                            cout << "                                 " << endl;
+                            cout << "************************************" << endl;
+
+                            if (cerdoactual == cerdo1)
+                            {
+                                acutrufaslanzamientos = 0;
+                                acutrufastotalesc1 = 0;
+                                acutrufasronda1 = 0;
+                            }
+                            else
+                            {
+                                acutrufaslanzamientos = 0;
+                                acutrufastotalesc2 = 0;
+                                acutrufasronda2 = 0;
+                            }
+
+                            bandera = false;
+                            hundido = true;
+                        }
                     }
-                    else if((vecrandnum[0] == vecrandnum[1]) && (vecrandnum[0] != 1) && (vecrandnum[1] != 1)) // caras iguales y ninguna es as
+                    else   //se juega con 3 dados
+                    {
+
+                        // caras distintas y ninguna es as
+                        if((vecrandnum[0] != vecrandnum[1]) && (vecrandnum[0] != vecrandnum[2])&&(vecrandnum[1] != vecrandnum[2])&&(vecrandnum[0] != 1) && (vecrandnum[1] != 1)&&(vecrandnum[2] != 1)
+                    {
+                        acutrufaslanzamientos = vecrandnum[0] + vecrandnum[1] + vecrandnum[2];
+                            if (cerdoactual == cerdo1)
+                            {
+                                acutrufastotalesc1 += acutrufaslanzamientos;
+                                acutrufasronda1 += acutrufaslanzamientos;
+                            }
+                            else
+                            {
+                                acutrufastotalesc2 += acutrufaslanzamientos;
+                                acutrufasronda2 += acutrufaslanzamientos;
+                            }
+
+                        }
+                        // caras iguales y ninguna es as
+                        else if((vecrandnum[0] == vecrandnum[1]) && (vecrandnum[0] == vecrandnum[2])&&(vecrandnum[0] != 1) && (vecrandnum[1] != 1)&& (vecrandnum[2] != 1))
                     {
                         cout << "                                 " << endl;
                         cout << "**********************" << endl;
                         cout << "OINK del cerdo " << cerdoactual << endl;
                         cout << "********************** " << endl;
 
-                        acutrufaslanzamientos = (vecrandnum[0] * 2) + (vecrandnum[1] * 2);
+                        acutrufaslanzamientos = (vecrandnum[0] * 2) + (vecrandnum[1] * 2) + (vecrandnum[2]*2);
 
-                        if (cerdoactual == cerdo1)
-                        {
-                            acutrufastotalesc1 += acutrufaslanzamientos;
-                            acutrufasronda1 += acutrufaslanzamientos;
+                            if (cerdoactual == cerdo1)
+                            {
+                                acutrufastotalesc1 += acutrufaslanzamientos;
+                                acutrufasronda1 += acutrufaslanzamientos;
+                            }
+                            else
+                            {
+                                acutrufastotalesc2 += acutrufaslanzamientos;
+                                acutrufasronda2 += acutrufaslanzamientos;
+                            }
+
+                            bandera = false;
+
                         }
-                        else
-                        {
-                            acutrufastotalesc2 += acutrufaslanzamientos;
-                            acutrufasronda2 += acutrufaslanzamientos;
-                        }
-
-                        bandera = false;
-
-                    }
-                    else if ((vecrandnum[0] != vecrandnum[1]) && ((vecrandnum[0] == 1) || (vecrandnum[1] == 1))) // caras distintas y hay un as
+                        // caras distintas y hay un as
+                        else if ((vecrandnum[0] != vecrandnum[1]) && (vecrandnum[0] != vecrandnum[2])&& (vecrandnum[1] != vecrandnum[2])&& ((vecrandnum[0] == 1) || (vecrandnum[1] == 1)|| (vecrandnum[2] == 1)))
                     {
 
 
                         if (cerdoactual == cerdo1)
-                        {
-                            acutrufaslanzamientos = 0;
-                            acutrufasronda1 += acutrufaslanzamientos;
-                            acutrufastotalesc1 -= acutrufasronda1;
-                            acutrufasronda1 = 0;
+                            {
+                                acutrufaslanzamientos = 0;
+                                acutrufasronda1 += acutrufaslanzamientos;
+                                acutrufastotalesc1 -= acutrufasronda1;
+                                acutrufasronda1 = 0;
+
+
+                            }
+                            else
+                            {
+                                acutrufaslanzamientos = 0;
+                                acutrufasronda2 += acutrufaslanzamientos;
+                                acutrufastotalesc2 -= acutrufasronda2;
+                                acutrufasronda2 = 0;
+
+
+
+                            }
+                            bandera = false;
+
 
 
                         }
-                        else
-                        {
-                            acutrufaslanzamientos = 0;
-                            acutrufasronda2 += acutrufaslanzamientos;
-                            acutrufastotalesc2 -= acutrufasronda2;
-                            acutrufasronda2 = 0;
+                        // caras iguales  son ases
 
-
-
-                        }
-                        bandera = false;
-
-
-
-                    }
-
-                    else if ((vecrandnum[0] == 1) && (vecrandnum[1] == 1))// caras iguales  son ases
+                        else if ((vecrandnum[0] == 1) && (vecrandnum[1] == 1) && (vecrandnum[2] == 1))
                     {
 
                         cout << "                                 " << endl;
@@ -291,28 +392,36 @@ void jugar()
                         cout << "************************************" << endl;
 
                         if (cerdoactual == cerdo1)
-                        {
-                            acutrufaslanzamientos = 0;
-                            acutrufastotalesc1 = 0;
-                            acutrufasronda1 = 0;
-                        }
-                        else
-                        {
-                            acutrufaslanzamientos = 0;
-                            acutrufastotalesc2 = 0;
-                            acutrufasronda2 = 0;
-                        }
+                            {
+                                acutrufaslanzamientos = 0;
+                                acutrufastotalesc1 = 0;
+                                acutrufasronda1 = 0;
+                            }
+                            else
+                            {
+                                acutrufaslanzamientos = 0;
+                                acutrufastotalesc2 = 0;
+                                acutrufasronda2 = 0;
+                            }
 
-                        bandera = false;
-                        hundido = true;
+                            bandera = false;
+                            hundido = true;
+                        }
 
 
                     }
 
+                    break;
 
-                    MostrarJugada(cerdoactual, cerdo1, contlanzamientos1, contlanzamientos2, vecrandnum, acutrufaslanzamientos, c, acutrufasronda1, acutrufasronda2, conTres);
+
+                }
 
 
+                MostrarJugada(cerdoactual, cerdo1, contlanzamientos1, contlanzamientos2, vecrandnum, acutrufaslanzamientos, c, acutrufasronda1, acutrufasronda2, conTres);
+
+
+                if(!conTres)
+                {
 
                     if((vecrandnum[0] == vecrandnum[1]) && (vecrandnum[0] != 1) && (vecrandnum[1] != 1))// caras iguales y ninguna es as
                     {
@@ -341,34 +450,50 @@ void jugar()
 
 
                     }
+                }
+                else
+                {
 
 
-                    break;
-
-                case 'N':
-
-                    system("cls");
 
 
-                    cout << "Turno del próximo cerdo" << endl;
-
-                    noContinuar = true;
-                    bandera = false;
 
 
-                    break;
-
-                default:
-                    cout << "¿Desea continuar lanzando?" << endl;
-                    break;
-                } // switch continuar
 
 
-            }// while no continuar
 
-        } // for c
 
-    } // for r
+
+
+                }
+
+
+                break;
+
+            case 'N':
+
+                system("cls");
+
+
+                cout << "Turno del próximo cerdo" << endl;
+
+                noContinuar = true;
+                bandera = false;
+
+
+                break;
+
+            default:
+                cout << "¿Desea continuar lanzando?" << endl;
+                break;
+            } // switch continuar
+
+
+        }// while no continuar
+
+    } // for c
+
+} // for r
 
 
 
@@ -509,16 +634,26 @@ void MostrarJugada(string cerdoactual, string cerdo1, int contlanzamientos1, int
     cout << "                                                                                                         " << endl;
     if (!conTres)
     {
-        cout << "     Dado 1:    " << vecrandnum[0] << "         Dado 2:       " << vecrandnum[1] << "                    " << endl;
+        int d1 = vecrandnum[0];
+        int d2 = vecrandnum[1];
+        cout << "  Dado 1:    " << endl;
+        MostrarDados(d1);
+        cout << "  Dado 2:    " << endl;
+        MostrarDados(d2);
+        cout << "                    " << endl;
         cout << "                                                                                                         " << endl;
     }
     else
     {
-        cout << "  Dado 1:   " << vecrandnum[0] << "  Dado 2:   " << vecrandnum[1] << "  Dado 3:   " << vecrandnum[2] << endl;
+        int d1 = vecrandnum[0], d2 = vecrandnum[1], d3 = vecrandnum[2];
+        cout << "  Dado 1:   " << endl;
+        MostrarDados(d1);
+        cout << "  Dado 2:   " << endl;
+        MostrarDados(d2);
+        cout << "  Dado 3:   " << endl;
+        MostrarDados(d3);
         cout << "                                                                                                         " << endl;
     }
-
-    MostrarDados(vecrandnum);
 
 
     cout << "                                                                                                         " << endl;
@@ -543,10 +678,12 @@ void MostrarJugada(string cerdoactual, string cerdo1, int contlanzamientos1, int
 
 
 }
-void MostrarDados( int vecrandnum[])
+void MostrarDados( int num)
 {
+    switch(num)
+    {
 
-    if(vecrandnum[0] == 1)
+    case 1:
     {
         cout << "                    +---------+" << endl;
         cout << "                    |         |" << endl;
@@ -555,7 +692,9 @@ void MostrarDados( int vecrandnum[])
         cout << "                    +---------+" << endl;
 
     }
-    else if (vecrandnum[0] == 2)
+    break;
+
+    case 2:
     {
 
         cout << "                    +---------+" << endl;
@@ -566,7 +705,9 @@ void MostrarDados( int vecrandnum[])
 
 
     }
-    else if (vecrandnum[0] == 3)
+    break;
+
+    case 3:
     {
 
         cout << "                    +---------+" << endl;
@@ -577,7 +718,8 @@ void MostrarDados( int vecrandnum[])
 
 
     }
-    else if (vecrandnum[0] == 4)
+    break;
+    case 4:
     {
 
         cout << "                    +---------+" << endl;
@@ -586,7 +728,8 @@ void MostrarDados( int vecrandnum[])
         cout << "                    | *     * |" << endl;
         cout << "                    +---------+" << endl;
     }
-    else if (vecrandnum[0] == 5)
+    break;
+    case 5:
     {
 
         cout << "                    +---------+" << endl;
@@ -595,7 +738,9 @@ void MostrarDados( int vecrandnum[])
         cout << "                    | *     * |" << endl;
         cout << "                    +---------+" << endl;
     }
-    else if (vecrandnum[0] == 6)
+    break;
+
+    case 6:
     {
 
         cout << "                    +---------+" << endl;
@@ -604,130 +749,10 @@ void MostrarDados( int vecrandnum[])
         cout << "                    | *     * |" << endl;
         cout << "                    +---------+" << endl;
     }
-
-
-
-
-
-    if(vecrandnum[1] == 1)
-    {
-        cout << "                    +---------+" << endl;
-        cout << "                    |         |" << endl;
-        cout << "                    |    *    |" << endl;
-        cout << "                    |         |" << endl;
-        cout << "                    +---------+" << endl;
-
     }
-    else if (vecrandnum[1] == 2)
-    {
-
-        cout << "                    +---------+" << endl;
-        cout << "                    | *       |" << endl;
-        cout << "                    |         |" << endl;
-        cout << "                    |       * |" << endl;
-        cout << "                    +---------+" << endl;
-
-
-    }
-    else if (vecrandnum[1] == 3)
-    {
-
-        cout << "                    +---------+" << endl;
-        cout << "                    | *       |" << endl;
-        cout << "                    |    *    |" << endl;
-        cout << "                    |       * |" << endl;
-        cout << "                    +---------+" << endl;
-
-
-    }
-    else if (vecrandnum[1] == 4)
-    {
-
-        cout << "                    +---------+" << endl;
-        cout << "                    | *     * |" << endl;
-        cout << "                    |         |" << endl;
-        cout << "                    | *     * |" << endl;
-        cout << "                    +---------+" << endl;
-    }
-    else if (vecrandnum[1] == 5)
-    {
-
-        cout << "                    +---------+" << endl;
-        cout << "                    | *     * |" << endl;
-        cout << "                    |    *    |" << endl;
-        cout << "                    | *     * |" << endl;
-        cout << "                    +---------+" << endl;
-    }
-    else if (vecrandnum[1] == 6)
-    {
-
-        cout << "                    +---------+" << endl;
-        cout << "                    | *     * |" << endl;
-        cout << "                    | *     * |" << endl;
-        cout << "                    | *     * |" << endl;
-        cout << "                    +---------+" << endl;
-    }
-
-    if(vecrandnum[2] == 1)
-    {
-        cout << "                    +---------+" << endl;
-        cout << "                    |         |" << endl;
-        cout << "                    |    *    |" << endl;
-        cout << "                    |         |" << endl;
-        cout << "                    +---------+" << endl;
-
-    }
-    else if (vecrandnum[2] == 2)
-    {
-
-        cout << "                    +---------+" << endl;
-        cout << "                    | *       |" << endl;
-        cout << "                    |         |" << endl;
-        cout << "                    |       * |" << endl;
-        cout << "                    +---------+" << endl;
-
-
-    }
-    else if (vecrandnum[2] == 3)
-    {
-
-        cout << "                    +---------+" << endl;
-        cout << "                    | *       |" << endl;
-        cout << "                    |    *    |" << endl;
-        cout << "                    |       * |" << endl;
-        cout << "                    +---------+" << endl;
-
-
-    }
-    else if (vecrandnum[2] == 4)
-    {
-
-        cout << "                    +---------+" << endl;
-        cout << "                    | *     * |" << endl;
-        cout << "                    |         |" << endl;
-        cout << "                    | *     * |" << endl;
-        cout << "                    +---------+" << endl;
-    }
-    else if (vecrandnum[2] == 5)
-    {
-
-        cout << "                    +---------+" << endl;
-        cout << "                    | *     * |" << endl;
-        cout << "                    |    *    |" << endl;
-        cout << "                    | *     * |" << endl;
-        cout << "                    +---------+" << endl;
-    }
-    else if (vecrandnum[2] == 6)
-    {
-
-        cout << "                    +---------+" << endl;
-        cout << "                    | *     * |" << endl;
-        cout << "                    | *     * |" << endl;
-        cout << "                    | *     * |" << endl;
-        cout << "                    +---------+" << endl;
-    }
-
-
-
 }
+
+
+
+
 
