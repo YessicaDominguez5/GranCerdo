@@ -151,7 +151,7 @@ void jugar()
                 switch(continuar)
                 {
 
-                case 'S':
+                case 'S':{
 
                     system("cls");
                     if(c == 1)
@@ -310,11 +310,9 @@ void jugar()
                     }
                     else   //se juega con 3 dados
                     {
-
-                        // caras distintas y ninguna es as
-                        if((vecrandnum[0] != vecrandnum[1]) && (vecrandnum[0] != vecrandnum[2])&&(vecrandnum[1] != vecrandnum[2])&&(vecrandnum[0] != 1) && (vecrandnum[1] != 1)&&(vecrandnum[2] != 1)
+                    if((vecrandnum[0] != vecrandnum[1]) && (vecrandnum[0] != vecrandnum[2])&&(vecrandnum[1] != vecrandnum[2])&&(vecrandnum[0] != 1) && (vecrandnum[1] != 1)&&(vecrandnum[2] != 1))
                     {
-                        acutrufaslanzamientos = vecrandnum[0] + vecrandnum[1] + vecrandnum[2];
+                        acutrufaslanzamientos = vecrandnum[0] + vecrandnum[1] + vecrandnum[2];// caras distintas y ninguna es as
                             if (cerdoactual == cerdo1)
                             {
                                 acutrufastotalesc1 += acutrufaslanzamientos;
@@ -409,7 +407,7 @@ void jugar()
                         }
 
 
-                    }
+
 
                     break;
 
@@ -465,10 +463,10 @@ void jugar()
 
 
 
-                }
 
 
-                break;
+
+                 } }
 
             case 'N':
 
@@ -489,6 +487,7 @@ void jugar()
             } // switch continuar
 
 
+
         }// while no continuar
 
     } // for c
@@ -498,12 +497,12 @@ void jugar()
 
 
 
-}
+
 //Funciones que salen de la función jugar
 
 // ¿Quién empieza el juego?
 
-int QuienEmpieza()
+int QuienEmpieza();
 {
     int vecdados1[2];
     int vecdados2[2];
@@ -589,7 +588,6 @@ int QuienEmpieza()
                 salir = false;
 
             }
-
 
         }
     } // fin del while
