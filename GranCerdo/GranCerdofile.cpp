@@ -229,6 +229,7 @@ void jugar()
                                 acutrufasronda2 += acutrufaslanzamientos;
                             }
 
+
                         }
                         else if((vecrandnum[0] == vecrandnum[1]) && (vecrandnum[0] != 1) && (vecrandnum[1] != 1)) // caras iguales y ninguna es as
                         {
@@ -466,7 +467,9 @@ void jugar()
 
 
 
-                 } }
+                 }
+
+                  }break; // Fin del switch 'S'
 
             case 'N':
 
@@ -492,9 +495,11 @@ void jugar()
 
     } // for c
 
+
 } // for r
 
 
+}
 
 
 
@@ -502,7 +507,7 @@ void jugar()
 
 // ¿Quién empieza el juego?
 
-int QuienEmpieza();
+int QuienEmpieza()
 {
     int vecdados1[2];
     int vecdados2[2];
@@ -595,6 +600,7 @@ int QuienEmpieza();
 }
 
 
+
 void MostrarTablero(int acutrufastotalesc1,int acutrufastotalesc2, string cerdo1, string cerdo2, string cerdoactual, int r)
 {
     cout << "                                                                                                         " << endl;
@@ -673,6 +679,7 @@ void MostrarJugada(string cerdoactual, string cerdo1, int contlanzamientos1, int
     cout << "                                                                                                         " << endl;
     cout << "                                                                                                         " << endl;
     cout << "---------------------------------------------------------------------------------------------------------" << endl;
+
 
 
 }
