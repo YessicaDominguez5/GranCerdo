@@ -101,9 +101,11 @@ void jugar()
 
 
     int acutrufastotalesc1 = 0, acutrufastotalesc2 = 0, acutrufaslanzamientos = 0, contlanzamientos1 = 0,contlanzamientos2 = 0, vecrandnum[3] = {}, acutrufasronda1 = 0, acutrufasronda2 = 0;
+    int contoinkc1 = 0, contoinkc2 = 0, masTrufasc1 = 0, masTrufasc2 = 0, cada50trufasc1 = 0, cada50trufasc2 = 0, oinksc1 = 0, oinksc2 = 0, mayorlanzamientoc1 = 0, total1 = 0, total2 = 0;
+    int mayorlanzamientoc2 = 0, cerdoCodicioso1 = 0, cerdoCodicioso2 = 0;
     char continuar;
     string cerdoactual;
-    bool noContinuar, bandera, hundido = false, conTres;
+    bool noContinuar, bandera, hundido = false, conTres = false;
 
 
 
@@ -151,7 +153,8 @@ void jugar()
                 switch(continuar)
                 {
 
-                case 'S':{
+                case 'S':
+                {
 
                     system("cls");
                     if(c == 1)
@@ -164,7 +167,23 @@ void jugar()
                     }
 
 
-                    if((acutrufastotalesc1 < 50 && acutrufastotalesc2 < 50)||(!hundido)) //jugar con 2 dados
+                    if( (acutrufastotalesc1 > 50 && acutrufastotalesc2 > 50 ) || hundido  ) //jugar con 3 dados
+                    {
+
+                        conTres = true;
+
+                        for (int i = 0; i < 3; i++)
+                        {
+
+                            vecrandnum[i] = 0;
+
+                            vecrandnum[i] = (rand()% 6)+ 1;
+
+                        }
+
+
+                    }
+                    else // jugar con 2 dados
                     {
 
                         for (int i = 0; i < 2; i++)
@@ -175,22 +194,12 @@ void jugar()
 
                         }
                     }
-                    else
-                    {
-                        conTres = true;
 
 
-                        for (int i = 0; i < 3; i++) // jugar con 3 dados
-                        {
-
-                            vecrandnum[i] = 0;
-
-                            vecrandnum[i] = (rand()% 6)+ 1;
-
-
-                        }
-                    }
                     MostrarTablero(acutrufastotalesc1, acutrufastotalesc2, cerdo1, cerdo2, cerdoactual, r);
+
+
+
                     if (cerdoactual == cerdo1)
                     {
                         cout << "  TRUFAS DE LA RONDA: " << acutrufasronda1 << endl;
@@ -238,6 +247,15 @@ void jugar()
                             cout << "OINK del cerdo " << cerdoactual << endl;
                             cout << "********************** " << endl;
 
+                            if(c == 1)
+                            {
+                                contoinkc1++;
+                            }
+                            else
+                            {
+                                contoinkc2++;
+                            }
+
                             acutrufaslanzamientos = (vecrandnum[0] * 2) + (vecrandnum[1] * 2);
 
                             if (cerdoactual == cerdo1)
@@ -251,7 +269,7 @@ void jugar()
                                 acutrufasronda2 += acutrufaslanzamientos;
                             }
 
-                            bandera = false;
+                            bandera = false; // no pregunta continuar s/n
 
                         }
                         else if ((vecrandnum[0] != vecrandnum[1]) && ((vecrandnum[0] == 1) || (vecrandnum[1] == 1))) // caras distintas y hay un as
@@ -311,9 +329,10 @@ void jugar()
                     }
                     else   //se juega con 3 dados
                     {
-                    if((vecrandnum[0] != vecrandnum[1]) && (vecrandnum[0] != vecrandnum[2])&&(vecrandnum[1] != vecrandnum[2])&&(vecrandnum[0] != 1) && (vecrandnum[1] != 1)&&(vecrandnum[2] != 1))
-                    {
-                        acutrufaslanzamientos = vecrandnum[0] + vecrandnum[1] + vecrandnum[2];// caras distintas y ninguna es as
+
+                        if((vecrandnum[0] != vecrandnum[1]) && (vecrandnum[0] != vecrandnum[2])&&(vecrandnum[1] != vecrandnum[2])&&(vecrandnum[0] != 1) && (vecrandnum[1] != 1)&&(vecrandnum[2] != 1))
+                        {
+                            acutrufaslanzamientos = vecrandnum[0] + vecrandnum[1] + vecrandnum[2];// caras distintas y ninguna es as
                             if (cerdoactual == cerdo1)
                             {
                                 acutrufastotalesc1 += acutrufaslanzamientos;
@@ -326,15 +345,88 @@ void jugar()
                             }
 
                         }
+
+                        else if((vecrandnum[1] == vecrandnum[2] && vecrandnum[1] != vecrandnum[0]) || (vecrandnum[0] == vecrandnum[2] && vecrandnum[0] != vecrandnum[1]) || (vecrandnum[0] == vecrandnum[1] && vecrandnum[0] != vecrandnum[2]))
+                        {
+
+                            if (vecrandnum[0] != 1 && vecrandnum[1] != 1 && vecrandnum[2] != 1)
+                            {
+
+                                // 2 caras iguales y una distinta (ninguna es as)
+
+                                // 4 5 5
+                                // 5 4 5
+                                // 5 5 4
+
+
+                                acutrufaslanzamientos = vecrandnum[0] + vecrandnum[1] + vecrandnum[2];
+                                if (cerdoactual == cerdo1)
+                                {
+                                    acutrufastotalesc1 += acutrufaslanzamientos;
+                                    acutrufasronda1 += acutrufaslanzamientos;
+                                }
+                                else
+                                {
+                                    acutrufastotalesc2 += acutrufaslanzamientos;
+                                    acutrufasronda2 += acutrufaslanzamientos;
+                                }
+
+
+                            }
+                            else if (vecrandnum[0] == 1 || vecrandnum[1] == 1 || vecrandnum[2] == 1)
+                            {
+
+                                // 2 caras iguales y hay un as
+
+                                if (cerdoactual == cerdo1)
+                                {
+                                    acutrufaslanzamientos = 0;
+                                    acutrufasronda1 += acutrufaslanzamientos;
+                                    acutrufastotalesc1 -= acutrufasronda1;
+                                    acutrufasronda1 = 0;
+
+
+                                }
+                                else
+                                {
+                                    acutrufaslanzamientos = 0;
+                                    acutrufasronda2 += acutrufaslanzamientos;
+                                    acutrufastotalesc2 -= acutrufasronda2;
+                                    acutrufasronda2 = 0;
+
+
+
+                                }
+                                bandera = false;
+                                noContinuar = true; // si hay un as tiene que cambiar de jugador
+
+
+
+                            }
+
+
+
+                        }
+
+
                         // caras iguales y ninguna es as
                         else if((vecrandnum[0] == vecrandnum[1]) && (vecrandnum[0] == vecrandnum[2])&&(vecrandnum[0] != 1) && (vecrandnum[1] != 1)&& (vecrandnum[2] != 1))
-                    {
-                        cout << "                                 " << endl;
-                        cout << "**********************" << endl;
-                        cout << "OINK del cerdo " << cerdoactual << endl;
-                        cout << "********************** " << endl;
+                        {
+                            cout << "                                 " << endl;
+                            cout << "**********************" << endl;
+                            cout << "OINK del cerdo " << cerdoactual << endl;
+                            cout << "********************** " << endl;
 
-                        acutrufaslanzamientos = (vecrandnum[0] * 2) + (vecrandnum[1] * 2) + (vecrandnum[2]*2);
+                            if(c == 1)
+                            {
+                                contoinkc1++;
+                            }
+                            else
+                            {
+                                contoinkc2++;
+                            }
+
+                            acutrufaslanzamientos = (vecrandnum[0] * 2) + (vecrandnum[1] * 2) + (vecrandnum[2]*2);
 
                             if (cerdoactual == cerdo1)
                             {
@@ -351,11 +443,11 @@ void jugar()
 
                         }
                         // caras distintas y hay un as
-                        else if ((vecrandnum[0] != vecrandnum[1]) && (vecrandnum[0] != vecrandnum[2])&& (vecrandnum[1] != vecrandnum[2])&& ((vecrandnum[0] == 1) || (vecrandnum[1] == 1)|| (vecrandnum[2] == 1)))
-                    {
+                        else if ((vecrandnum[0] != vecrandnum[1]) && (vecrandnum[0] != vecrandnum[2])&& (vecrandnum[1] != vecrandnum[2]) && ((vecrandnum[0] == 1) || (vecrandnum[1] == 1)|| (vecrandnum[2] == 1)))
+                        {
 
 
-                        if (cerdoactual == cerdo1)
+                            if (cerdoactual == cerdo1)
                             {
                                 acutrufaslanzamientos = 0;
                                 acutrufasronda1 += acutrufaslanzamientos;
@@ -381,24 +473,26 @@ void jugar()
                         }
                         // caras iguales  son ases
 
-                        else if ((vecrandnum[0] == 1) && (vecrandnum[1] == 1) && (vecrandnum[2] == 1))
-                    {
+                        else if (vecrandnum[0] == 1 && vecrandnum[1] == 1 && vecrandnum[2] == 1)
+                        {
 
-                        cout << "                                 " << endl;
-                        cout << "************************************" << endl;
-                        cout << "CERDO "<< cerdoactual <<" HUNDIDO EN EL BARRO!" << endl;
-                        cout << "                                 " << endl;
-                        cout << "************************************" << endl;
+                            cout << "                                 " << endl;
+                            cout << "************************************" << endl;
+                            cout << "CERDO "<< cerdoactual <<" HUNDIDO EN EL BARRO!" << endl;
+                            cout << "                                 " << endl;
+                            cout << "************************************" << endl;
 
-                        if (cerdoactual == cerdo1)
+                            if (cerdoactual == cerdo1)
                             {
                                 acutrufaslanzamientos = 0;
+                                acutrufastotalesc2 = acutrufastotalesc1;
                                 acutrufastotalesc1 = 0;
                                 acutrufasronda1 = 0;
                             }
                             else
                             {
                                 acutrufaslanzamientos = 0;
+                                acutrufastotalesc1 = acutrufastotalesc2;
                                 acutrufastotalesc2 = 0;
                                 acutrufasronda2 = 0;
                             }
@@ -407,96 +501,223 @@ void jugar()
                             hundido = true;
                         }
 
+                    }
 
+
+                    MostrarJugada(cerdoactual, cerdo1, contlanzamientos1, contlanzamientos2, vecrandnum, acutrufaslanzamientos, c, acutrufasronda1, acutrufasronda2, conTres, mayorlanzamientoc1, mayorlanzamientoc2);
+
+
+                    if(!conTres) // con 2 dados
+                    {
+
+                        if((vecrandnum[0] == vecrandnum[1]) && (vecrandnum[0] != 1) && (vecrandnum[1] != 1))// caras iguales y ninguna es as
+                        {
+
+                            cout << "Tire nuevamente" << endl;
+
+
+                        }
+                        else if ((vecrandnum[0] != vecrandnum[1]) && ((vecrandnum[0] == 1) || (vecrandnum[1] == 1))) //caras distintas y alguno es 1
+                        {
+
+                            noContinuar = true;
+
+                            if(r != 5 && c != 2){
+                                cout << "Continúa el siguiente cerdo" << endl;
+                            }
+
+
+
+
+                        }
+                        else if ((vecrandnum[0] == 1) && (vecrandnum[1] == 1)) // caras iguales  son ases
+                        {
+                            noContinuar = true;
+
+                            if(r != 5 && c != 2){
+                                cout << "Continúa el siguiente cerdo" << endl;
+                            }
+
+
+                        }
+                    }
+                    else // con 3 dados
+                    {
+
+                        // caras iguales y ninguna es as
+                        if((vecrandnum[0] == vecrandnum[1]) && (vecrandnum[0] == vecrandnum[2])&&(vecrandnum[0] != 1) && (vecrandnum[1] != 1)&& (vecrandnum[2] != 1))
+                        {
+
+                            cout << "Tire nuevamente" << endl;
+
+                        } // caras distintas y hay un as
+                        else if ((vecrandnum[0] != vecrandnum[1]) && (vecrandnum[0] != vecrandnum[2])&& (vecrandnum[1] != vecrandnum[2])&& ((vecrandnum[0] == 1) || (vecrandnum[1] == 1)|| (vecrandnum[2] == 1)))
+                        {
+
+                            noContinuar = true;
+
+
+
+                            if(r != 5 && c != 2){
+                                cout << "Continúa el siguiente cerdo" << endl;
+                            }
+
+
+
+                        }
+                        else if ((vecrandnum[0] == 1) && (vecrandnum[1] == 1) && (vecrandnum[2] == 1))
+                        {
+
+                            noContinuar = true;
+
+                            if(r != 5 && c != 2){
+                                cout << "Continúa el siguiente cerdo" << endl;
+                            }
+
+
+
+
+                        }
+
+
+
+                    }
+
+                }
+                break; // Fin del switch 'S'
+
+                case 'N':
+
+                    system("cls");
+
+
+                    cout << "Turno del próximo cerdo" << endl;
+
+                    noContinuar = true;
+                    bandera = false;
 
 
                     break;
 
-
-                }
-
-
-                MostrarJugada(cerdoactual, cerdo1, contlanzamientos1, contlanzamientos2, vecrandnum, acutrufaslanzamientos, c, acutrufasronda1, acutrufasronda2, conTres);
-
-
-                if(!conTres)
-                {
-
-                    if((vecrandnum[0] == vecrandnum[1]) && (vecrandnum[0] != 1) && (vecrandnum[1] != 1))// caras iguales y ninguna es as
-                    {
-
-                        cout << "Tire nuevamente" << endl;
-
-
-                    }
-                    else if ((vecrandnum[0] != vecrandnum[1]) && ((vecrandnum[0] == 1) || (vecrandnum[1] == 1))) //caras distintas y alguno es 1
-                    {
-
-                        noContinuar = true;
-
-
-                        cout << "Continúa el siguiente cerdo" << endl;
+                default:
+                    cout << "¿Desea continuar lanzando?" << endl;
+                    break;
+                } // switch continuar
 
 
 
+            }// while no continuar
 
-                    }
-                    else if ((vecrandnum[0] == 1) && (vecrandnum[1] == 1)) // caras iguales  son ases
-                    {
-                        noContinuar = true;
-
-                        cout << "Continúa el siguiente cerdo" << endl;
+        } // for c
 
 
-                    }
-                }
-                else
-                {
+    } // for r
+
+     system("cls");
+
+    cout<< "*************************************************************************" << endl;
+    cout<< "*                                                                       *" << endl;
+    cout<< "*                       JUEGO TERMINADO!                                *" << endl;
+    cout<< "*                       FIN DE LOS LANZAMIENTOS!                        *" << endl;
+    cout<< "*                                                                       *" << endl;
+    cout<< "*                                                                       *" << endl;
+    cout<< "*************************************************************************" << endl;
+
+    system("pause");
 
 
 
 
+    //puntos de victoria
+    if(acutrufastotalesc1 > acutrufastotalesc2)
+    {
+
+        masTrufasc1 += 5;
+
+
+    }
+    else if(acutrufastotalesc2 > acutrufastotalesc1)
+    {
+
+        masTrufasc2 += 5;
+
+    }
+    else
+    {
+        masTrufasc1 +=5;
+        masTrufasc2 += 5;
+
+
+    }
+
+    cada50trufasc1 += (acutrufastotalesc1 / 50);
+    cada50trufasc2 += (acutrufastotalesc2 / 50);
+
+    oinksc1 += (contoinkc1 * 2);
+    oinksc2 += (contoinkc2 * 2);
+
+    if(mayorlanzamientoc1 > mayorlanzamientoc2)
+    {
+
+        cerdoCodicioso1 += 3;
+
+    }
+    else if(mayorlanzamientoc2 > mayorlanzamientoc1)
+    {
+        cerdoCodicioso2 += 3;
+    }
+    else
+    {
+
+        cerdoCodicioso1 += 3;
+        cerdoCodicioso2 += 3;
+
+
+    }
+
+    system("cls");
+
+
+    cout << "********************************************************************************************************* " << endl;
+    cout << "********************************************************************************************************* " << endl;
+    cout << "                                        *  GRAN CERDO  *                                                  " << endl;
+    cout << " ******************************************************************************************************** " << endl;
+    cout << "         HITO          *       " << cerdo1 << "                                    "  <<  cerdo2 << "                     " << endl;
+    cout << " ******************************************************************************************************** " << endl;
+    cout << " Más trufas en total   * " << masTrufasc1 << " PDV ("<< acutrufastotalesc1 << " trufas)                  " << masTrufasc2 << " (" << acutrufastotalesc2 << " trufas) " << endl;
+    cout << " -------------------------------------------------------------------------------------------------------- "  << endl;
+    cout << " Cada 50 trufas        * " << cada50trufasc1 << " PDV (" << cada50trufasc1 * 50 << " trufas)                 " << cada50trufasc2 << " PDV (" << cada50trufasc2 * 50 << " trufas)" << endl;
+    cout << " -------------------------------------------------------------------------------------------------------- " << endl;
+    cout << " Oinks                 * " << oinksc1 << " PDV (" << contoinkc1 << " oinks)                 " << oinksc2 << " PDV (" << contoinkc2 << " oinks)" << endl;
+    cout << " -------------------------------------------------------------------------------------------------------- " << endl;
+    cout << " Cerdo codicioso       * " << cerdoCodicioso1 << " PDV (" << mayorlanzamientoc1 << " lanzamientos)          " << cerdoCodicioso2 << " PDV (" << mayorlanzamientoc2 << " lanzamientos)" << endl;
+    cout << " -------------------------------------------------------------------------------------------------------- " << endl;
+    total1 = masTrufasc1 + cada50trufasc1 + oinksc1 + cerdoCodicioso1;
+    total2 = masTrufasc2 + cada50trufasc2 + oinksc2 + cerdoCodicioso2;
+
+
+             cout << " TOTAL                    " << total1  << " PDV                                       " << total2 << " PDV"  << endl;
+    cout << "                                                                                                          " << endl;
+    cout << "                                                                                                          " << endl;
+
+    if (total1 > total2)
+    {
+
+        cout << "EL GANADOR ES " << cerdo1 << " CON " << total1 << " PUNTOS DE VICTORIA" << endl << endl;
+    }
+    else
+    {
+        cout << "EL GANADOR ES " << cerdo2 << " CON " << total2 << " PUNTOS DE VICTORIA" << endl << endl;
+
+    }
+    cout << "                                                                                                          " << endl;
+    cout << "*********************************************************************************************************" << endl;
+    cout << "*********************************************************************************************************" << endl;
+
+    system("pause");
 
 
 
-
-
-
-
-
-
-
-
-                 }
-
-                  }break; // Fin del switch 'S'
-
-            case 'N':
-
-                system("cls");
-
-
-                cout << "Turno del próximo cerdo" << endl;
-
-                noContinuar = true;
-                bandera = false;
-
-
-                break;
-
-            default:
-                cout << "¿Desea continuar lanzando?" << endl;
-                break;
-            } // switch continuar
-
-
-
-        }// while no continuar
-
-    } // for c
-
-
-} // for r
 
 
 }
@@ -595,6 +816,12 @@ int QuienEmpieza()
             }
 
         }
+
+        if(salir == true){
+            cout<< " Hubo un empate! Se volverá a tirar los dados!"<<endl;
+            cout<< "_________________________________________________"<<endl;
+            system("pause");
+        }
     } // fin del while
     return jugador; //retorna el número de jugador que empieza
 }
@@ -620,17 +847,28 @@ void MostrarTablero(int acutrufastotalesc1,int acutrufastotalesc2, string cerdo1
 
 }
 
-void MostrarJugada(string cerdoactual, string cerdo1, int contlanzamientos1, int contlanzamientos2, int vecrandnum[2],int acutrufaslanzamientos, int c, int acutrufasronda1, int acutrufasronda2, bool conTres)
+void MostrarJugada(string cerdoactual, string cerdo1, int contlanzamientos1, int contlanzamientos2, int vecrandnum[3],int acutrufaslanzamientos, int c, int acutrufasronda1, int acutrufasronda2, bool conTres, int &mayorlanzamientoc1, int &mayorlanzamientoc2)
 {
     cout << "---------------------------------------------------------------------------------------------------------" << endl;
     cout << "                                                                                                         " << endl;
     if(cerdoactual == cerdo1)
     {
         cout << "      LANZAMIENTO # " << contlanzamientos1 << endl;
+        if(contlanzamientos1 > mayorlanzamientoc1)
+        {
+
+            mayorlanzamientoc1 = contlanzamientos1;
+        }
     }
     else
     {
         cout << "      LANZAMIENTO # " << contlanzamientos2 << endl;
+
+        if(contlanzamientos2 > mayorlanzamientoc2)
+        {
+
+            mayorlanzamientoc2 = contlanzamientos2;
+        }
     }
 
     cout << "                                                                                                         " << endl;
