@@ -17,6 +17,8 @@ int main()
     setlocale(LC_ALL,"spanish"); // para caracteres especiales
 
     MostrarPresentacion();
+    int mayorpuntosdevictoria = 0;
+    string jugadorganador;
 
     char menu;
 
@@ -40,13 +42,13 @@ int main()
         case '1':
         {
 
-            jugar();
+            jugar(mayorpuntosdevictoria, jugadorganador);
 
             break;
         }
         case '2':
 
-
+            MostrarEstadistica(mayorpuntosdevictoria, jugadorganador);
 
             break;
 
@@ -72,6 +74,8 @@ int main()
 
     } // fin del while menu
 
+     system("cls");
+     MostrarDespedida();
 
     return 0;
 }

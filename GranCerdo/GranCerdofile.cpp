@@ -60,7 +60,7 @@ void MostrarMenu()
 }
 
 
-void jugar()
+void jugar(int &mayorpuntosdevictoria, string &jugadorganador)
 {
     string cerdo1, cerdo2;
 
@@ -704,10 +704,25 @@ void jugar()
     {
 
         cout << "EL GANADOR ES " << cerdo1 << " CON " << total1 << " PUNTOS DE VICTORIA" << endl << endl;
+        if(total1 > mayorpuntosdevictoria){
+
+            jugadorganador = cerdo1;
+            mayorpuntosdevictoria = total1;
+
+
+        }
     }
     else
     {
         cout << "EL GANADOR ES " << cerdo2 << " CON " << total2 << " PUNTOS DE VICTORIA" << endl << endl;
+
+        if(total2 > mayorpuntosdevictoria){
+
+            jugadorganador = cerdo2;
+            mayorpuntosdevictoria = total2;
+
+
+        }
 
     }
     cout << "                                                                                                          " << endl;
@@ -994,6 +1009,70 @@ void MostrarDados( int num)
     }
     }
 }
+
+void MostrarDespedida(){
+
+    cout << "*********************************************************************************************************" << endl;
+    cout << "*********************************************************************************************************" << endl;
+    cout << "**                                                                                                     **" << endl;
+    cout << "**                                                                                                     **" << endl;
+    cout << "**                   GRACIAS POR JUGAR!!!!                                                             **" << endl;
+    cout << "**                                                                           ^^--                      **" << endl;
+    cout << "**                                                                        E  °    .                    **" << endl;
+    cout << "**                                  HASTA PRONTO!!                         .       . ~                 **" << endl;
+    cout << "**                                                                          w . w./                    **" << endl;
+    cout << "**                                                                                                     **" << endl;
+    cout << "**                                                                                                     **" << endl;
+    cout << "**                                                                                                     **" << endl;
+    cout << "**                                                                                                     **" << endl;
+    cout << "**                                                                                                     **" << endl;
+    cout << "*********************************************************************************************************" << endl;
+    cout << "*********************************************************************************************************" << endl;
+
+
+
+
+
+}
+
+void MostrarEstadistica(int mayorpuntosdevictoria,string jugadorganador){
+
+if(mayorpuntosdevictoria == 0){
+
+            system("cls");
+
+            cout << "No se ha jugado una partida hasta el momento" << endl;
+
+            sleep(3);
+
+        } else{
+            system("cls");
+
+    cout << "*********************************************************************************************************" << endl;
+    cout << "*********************************************************************************************************" << endl;
+    cout << "**                                                                                                     **" << endl;
+    cout << "**                                                                                                     **" << endl;
+    cout << "**                                                                                                     **" << endl;
+    cout << "**                                                                                                     **" << endl;
+    cout << "**              El jugador que obtuvo más puntos de victoria es: " << jugadorganador << "                                    **" << endl;
+    cout << "**                                                                                                     **" << endl;
+    cout << "**                                                                                                     **" << endl;
+    cout << "**                  con " << mayorpuntosdevictoria << " puntos de victoria.                                                         **" << endl;
+    cout << "**                                                                                                     **" << endl;
+    cout << "**                                                                                                     **" << endl;
+    cout << "**                                                                                                     **" << endl;
+    cout << "**                                                                                                     **" << endl;
+    cout << "*********************************************************************************************************" << endl;
+    cout << "*********************************************************************************************************" << endl;
+
+    sleep(3);
+
+}}
+
+
+
+
+
 
 
 
