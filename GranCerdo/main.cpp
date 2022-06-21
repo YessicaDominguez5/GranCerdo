@@ -54,6 +54,17 @@ int main()
 
         case '3':
 
+            system("cls");
+
+            cout << "Nombre del grupo: Pig Plus Plus" << endl << endl;
+            cout << "Integrantes:" << endl << endl;
+            cout << "Dominguez Yessica Natalia - legajo 25475" << endl << endl;
+            cout << "D'Orazio Nicolás - legajo 24963" << endl << endl;
+            cout << "Fernandez Franco - legajo 25901" << endl << endl;
+            cout << "Vega Santiago Tomás - legajo 24577" << endl << endl;
+
+            system("pause");
+
             break;
 
         case '0':

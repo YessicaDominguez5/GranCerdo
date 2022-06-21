@@ -64,7 +64,7 @@
 	<cctype>
 	"GranCerdo.h"
 
-1655773964 source:c:\users\juani\documents\tp1laboratorio\grancerdo\grancerdo\grancerdofile.cpp
+1655775723 source:c:\users\juani\documents\tp1laboratorio\grancerdo\grancerdo\grancerdofile.cpp
 	<iostream>
 	<clocale>
 	<unistd.h>
@@ -74,9 +74,9 @@
 	<cctype>
 	"GranCerdo.h"
 
-1655774550 c:\users\juani\documents\tp1laboratorio\grancerdo\grancerdo\grancerdo.h
+1655775733 c:\users\juani\documents\tp1laboratorio\grancerdo\grancerdo\grancerdo.h
 
-1655774592 source:c:\users\juani\documents\tp1laboratorio\grancerdo\grancerdo\main.cpp
+1655779349 source:c:\users\juani\documents\tp1laboratorio\grancerdo\grancerdo\main.cpp
 	<iostream>
 	<clocale>
 	<unistd.h>
