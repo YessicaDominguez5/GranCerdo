@@ -522,9 +522,9 @@ void jugar(int &mayorpuntosdevictoria, string &jugadorganador)
 
                             noContinuar = true;
 
-                            if(r == 5)
+                            if(r == 5) // si estamos en la ronda 5
                             {
-                                if(c == 2)
+                                if(c == 2) // si es la ronda 5 y el ultimo jugador, quiere decir que es la ultima ronda y jugada
                                 {
                                 system("pause");
 

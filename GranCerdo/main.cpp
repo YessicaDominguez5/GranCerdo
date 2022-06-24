@@ -2,9 +2,9 @@
 #include <clocale> //setlocale
 #include <unistd.h> //sleep(3);
 #include <string>
-#include <cstdlib>
-#include <ctime>
-#include <cctype>
+#include <cstdlib> //random
+#include <ctime> //random
+#include <cctype> //toupper
 
 #include "GranCerdo.h"
 
