@@ -102,10 +102,10 @@ void jugar(int &mayorpuntosdevictoria, string &jugadorganador)
 
     int acutrufastotalesc1 = 0, acutrufastotalesc2 = 0, acutrufaslanzamientos = 0, contlanzamientos1 = 0,contlanzamientos2 = 0, vecrandnum[3] = {}, acutrufasronda1 = 0, acutrufasronda2 = 0;
     int contoinkc1 = 0, contoinkc2 = 0, masTrufasc1 = 0, masTrufasc2 = 0, cada50trufasc1 = 0, cada50trufasc2 = 0, oinksc1 = 0, oinksc2 = 0, mayorlanzamientoc1 = 0, total1 = 0, total2 = 0;
-    int mayorlanzamientoc2 = 0, cerdoCodicioso1 = 0, cerdoCodicioso2 = 0;
+    int mayorlanzamientoc2 = 0, cerdoCodicioso1 = 0, cerdoCodicioso2 = 0, humCerdoprimo1 = 0, humCerdoprimo2 = 0;
     char continuar;
     string cerdoactual;
-    bool noContinuar, bandera, hundido = false, conTres = false;
+    bool noContinuar, bandera, hundido = false, conTres = false,banderaprimo = false;
 
 
 
@@ -221,8 +221,11 @@ void jugar(int &mayorpuntosdevictoria, string &jugadorganador)
                     cout << "                                                                                                         " << endl;
 
 
-                    if(!conTres) // si hay que jugar con 2 dados
+                    if(!conTres)// si hay que jugar con 2 dados
                     {
+
+                        int conprimo0 = 0, conprimo1 = 0, conprimo2 = 0;
+                        bool esprimo0 = false, esprimo1 = false;
 
                         if((vecrandnum[0] != vecrandnum[1]) && (vecrandnum[0] != 1) && (vecrandnum[1] != 1)) // caras distintas y ninguna es as
                         {
@@ -237,6 +240,54 @@ void jugar(int &mayorpuntosdevictoria, string &jugadorganador)
                                 acutrufastotalesc2 += acutrufaslanzamientos;
                                 acutrufasronda2 += acutrufaslanzamientos;
                             }
+                            for (int p = 1; p <= 6; p++)
+                            {
+
+                                if(vecrandnum[0] % p == 0)
+                                {
+                                    conprimo0 ++;
+                                }
+
+                                if(vecrandnum[1] % p == 0)
+                                {
+                                    conprimo1 ++;
+
+                                }
+                            }
+
+                            if(conprimo0 == 2)
+                            {
+                                esprimo0 = true;
+                            }
+                            if(conprimo1 == 2)
+                            {
+                                esprimo1 = true;
+                            }
+                            if(esprimo0 == true && esprimo1 == true && banderaprimo == false)
+                            {
+
+                                if(c==1)
+                                {
+                                    humCerdoprimo1 =5;
+
+                                    cout <<"El cerdo " << cerdoactual << " es el ganador por el bonus de los números primos" << endl;
+
+                                }
+                                else
+                                {
+
+                                    humCerdoprimo2 = 5;
+                                    cout <<"El cerdo " << cerdoactual << " es el ganador por el bonus de los números primos" << endl;
+
+                                }
+
+                                banderaprimo = true;
+
+
+                            }
+
+
+
 
 
                         }
@@ -268,6 +319,50 @@ void jugar(int &mayorpuntosdevictoria, string &jugadorganador)
                                 acutrufastotalesc2 += acutrufaslanzamientos;
                                 acutrufasronda2 += acutrufaslanzamientos;
                             }
+                            for (int p = 1; p <= 6; p++)
+                            {
+
+                                if(vecrandnum[0] % p == 0)
+                                {
+                                    conprimo0 ++;
+                                }
+
+                                if(vecrandnum[1] % p == 0)
+                                {
+                                    conprimo1 ++;
+
+                                }
+                            }
+
+                            if(conprimo0 == 2)
+                            {
+                                esprimo0 = true;
+                            }
+                            if(conprimo1 == 2)
+                            {
+                                esprimo1 = true;
+                            }
+                            if(esprimo0 == true && esprimo1 == true && banderaprimo == false)
+                            {
+
+                                if(c==1)
+                                {
+                                    humCerdoprimo1 = 5;
+                                    cout <<"El cerdo " << cerdoactual << " es el ganador por el bonus de los números primos" << endl;
+
+                                }
+                                else
+                                {
+
+                                    humCerdoprimo2 = 5;
+                                    cout <<"El cerdo " << cerdoactual << " es el ganador por el bonus de los números primos" << endl;
+
+                                }
+
+                                banderaprimo = true;
+
+
+                            }
 
                             bandera = false; // no pregunta continuar s/n
 
@@ -292,6 +387,50 @@ void jugar(int &mayorpuntosdevictoria, string &jugadorganador)
                                 acutrufastotalesc2 -= acutrufasronda2;
                                 acutrufasronda2 = 0;
 
+
+
+                            }
+                            for (int p = 1; p <= 6; p++)
+                            {
+
+                                if(vecrandnum[0] % p == 0)
+                                {
+                                    conprimo0 ++;
+                                }
+
+                                if(vecrandnum[1] % p == 0)
+                                {
+                                    conprimo1 ++;
+
+                                }
+                            }
+
+                            if(conprimo0 == 2)
+                            {
+                                esprimo0 = true;
+                            }
+                            if(conprimo1 == 2)
+                            {
+                                esprimo1 = true;
+                            }
+                            if(esprimo0 == true && esprimo1 == true && banderaprimo == false)
+                            {
+
+                                if(c==1)
+                                {
+                                    humCerdoprimo1 = 5;
+                                    cout <<"El cerdo " << cerdoactual << " es el ganador por el bonus de los números primos" << endl;
+
+                                }
+                                else
+                                {
+
+                                    humCerdoprimo2 = 5;
+                                    cout <<"El cerdo " << cerdoactual << " es el ganador por el bonus de los números primos" << endl;
+
+                                }
+
+                                banderaprimo = true;
 
 
                             }
@@ -322,6 +461,50 @@ void jugar(int &mayorpuntosdevictoria, string &jugadorganador)
                                 acutrufastotalesc2 = 0;
                                 acutrufasronda2 = 0;
                             }
+                            for (int p = 1; p <= 6; p++)
+                            {
+
+                                if(vecrandnum[0] % p == 0)
+                                {
+                                    conprimo0 ++;
+                                }
+
+                                if(vecrandnum[1] % p == 0)
+                                {
+                                    conprimo1 ++;
+
+                                }
+                            }
+
+                            if(conprimo0 == 2)
+                            {
+                                esprimo0 = true;
+                            }
+                            if(conprimo1 == 2)
+                            {
+                                esprimo1 = true;
+                            }
+                            if(esprimo0 == true && esprimo1 == true && banderaprimo == false)
+                            {
+
+                                if(c==1)
+                                {
+                                    humCerdoprimo1 = 5;
+                                    cout <<"El cerdo " << cerdoactual << " es el ganador por el bonus de los números primos" << endl;
+
+                                }
+                                else
+                                {
+
+                                    humCerdoprimo2 = 5;
+                                    cout <<"El cerdo " << cerdoactual << " es el ganador por el bonus de los números primos" << endl;
+
+                                }
+
+                                banderaprimo = true;
+
+
+                            }
 
                             bandera = false;
                             hundido = true;
@@ -329,6 +512,9 @@ void jugar(int &mayorpuntosdevictoria, string &jugadorganador)
                     }
                     else   //se juega con 3 dados
                     {
+                        int conprimo0 = 0, conprimo1 = 0, conprimo2 = 0;
+                        bool esprimo0 = false, esprimo1 = false, esprimo2 = false;
+
 
                         if((vecrandnum[0] != vecrandnum[1]) && (vecrandnum[0] != vecrandnum[2])&&(vecrandnum[1] != vecrandnum[2])&&(vecrandnum[0] != 1) && (vecrandnum[1] != 1)&&(vecrandnum[2] != 1))
                         {
@@ -342,6 +528,60 @@ void jugar(int &mayorpuntosdevictoria, string &jugadorganador)
                             {
                                 acutrufastotalesc2 += acutrufaslanzamientos;
                                 acutrufasronda2 += acutrufaslanzamientos;
+                            }
+                            for (int p = 1; p <= 6; p++)
+                            {
+
+                                if(vecrandnum[0] % p == 0)
+                                {
+                                    conprimo0 ++;
+                                }
+
+                                if(vecrandnum[1] % p == 0)
+                                {
+                                    conprimo1 ++;
+
+                                }
+                                if(vecrandnum[2]% p == 0)
+                                {
+                                    conprimo2++;
+
+                                }
+                            }
+
+                            if(conprimo0 == 2)
+                            {
+                                esprimo0 = true;
+                            }
+                            if(conprimo1 == 2)
+                            {
+                                esprimo1 = true;
+                            }
+                            if(conprimo2 == 2)
+                            {
+
+                                esprimo2 = true;
+                            }
+                            if(esprimo0 == true && esprimo1 == true && esprimo2 == true && banderaprimo == false)
+                            {
+
+                                if(c==1)
+                                {
+                                    humCerdoprimo1 = 7;
+                                    cout <<"El cerdo " << cerdoactual << " es el ganador por el bonus de los números primos" << endl;
+
+                                }
+                                else
+                                {
+
+                                    humCerdoprimo2 = 7;
+                                    cout <<"El cerdo " << cerdoactual << " es el ganador por el bonus de los números primos" << endl;
+
+                                }
+
+                                banderaprimo = true;
+
+
                             }
 
                         }
@@ -370,6 +610,61 @@ void jugar(int &mayorpuntosdevictoria, string &jugadorganador)
                                     acutrufastotalesc2 += acutrufaslanzamientos;
                                     acutrufasronda2 += acutrufaslanzamientos;
                                 }
+                                for (int p = 1; p <= 6; p++)
+                                {
+
+                                    if(vecrandnum[0] % p == 0)
+                                    {
+                                        conprimo0 ++;
+                                    }
+
+                                    if(vecrandnum[1] % p == 0)
+                                    {
+                                        conprimo1 ++;
+
+                                    }
+                                    if(vecrandnum[2]% p == 0)
+                                    {
+                                        conprimo2++;
+
+                                    }
+                                }
+
+                                if(conprimo0 == 2)
+                                {
+                                    esprimo0 = true;
+                                }
+                                if(conprimo1 == 2)
+                                {
+                                    esprimo1 = true;
+                                }
+                                if(conprimo2 == 2)
+                                {
+
+                                    esprimo2 = true;
+                                }
+                                if(esprimo0 == true && esprimo1 == true && esprimo2 == true && banderaprimo == false)
+                                {
+
+                                    if(c==1)
+                                    {
+                                        humCerdoprimo1 =7;
+                                        cout <<"El cerdo " << cerdoactual << " es el ganador por el bonus de los números primos" << endl;
+
+                                    }
+                                    else
+                                    {
+
+                                        humCerdoprimo2 = 7;
+                                        cout <<"El cerdo " << cerdoactual << " es el ganador por el bonus de los números primos" << endl;
+
+                                    }
+
+                                    banderaprimo = true;
+
+
+                                }
+
 
 
                             }
@@ -397,6 +692,61 @@ void jugar(int &mayorpuntosdevictoria, string &jugadorganador)
 
 
                                 }
+                                for (int p = 1; p <= 6; p++)
+                                {
+
+                                    if(vecrandnum[0] % p == 0)
+                                    {
+                                        conprimo0 ++;
+                                    }
+
+                                    if(vecrandnum[1] % p == 0)
+                                    {
+                                        conprimo1 ++;
+
+                                    }
+                                    if(vecrandnum[2]% p == 0)
+                                    {
+                                        conprimo2++;
+
+                                    }
+                                }
+
+                                if(conprimo0 == 2)
+                                {
+                                    esprimo0 = true;
+                                }
+                                if(conprimo1 == 2)
+                                {
+                                    esprimo1 = true;
+                                }
+                                if(conprimo2 == 2)
+                                {
+
+                                    esprimo2 = true;
+                                }
+                                if(esprimo0 == true && esprimo1 == true && esprimo2 == true && banderaprimo == false)
+                                {
+
+                                    if(c==1)
+                                    {
+                                        humCerdoprimo1 =7;
+                                        cout <<"El cerdo " << cerdoactual << " es el ganador por el bonus de los números primos" << endl;
+
+                                    }
+                                    else
+                                    {
+
+                                        humCerdoprimo2 = 7;
+                                        cout <<"El cerdo " << cerdoactual << " es el ganador por el bonus de los números primos" << endl;
+
+                                    }
+
+                                    banderaprimo = true;
+
+
+                                }
+
                                 bandera = false;
                                 noContinuar = true; // si hay un as tiene que cambiar de jugador
 
@@ -438,6 +788,61 @@ void jugar(int &mayorpuntosdevictoria, string &jugadorganador)
                                 acutrufastotalesc2 += acutrufaslanzamientos;
                                 acutrufasronda2 += acutrufaslanzamientos;
                             }
+                            for (int p = 1; p <= 6; p++)
+                            {
+
+                                if(vecrandnum[0] % p == 0)
+                                {
+                                    conprimo0 ++;
+                                }
+
+                                if(vecrandnum[1] % p == 0)
+                                {
+                                    conprimo1 ++;
+
+                                }
+                                if(vecrandnum[2]% p == 0)
+                                {
+                                    conprimo2++;
+
+                                }
+                            }
+
+                            if(conprimo0 == 2)
+                            {
+                                esprimo0 = true;
+                            }
+                            if(conprimo1 == 2)
+                            {
+                                esprimo1 = true;
+                            }
+                            if(conprimo2 == 2)
+                            {
+
+                                esprimo2 = true;
+                            }
+                            if(esprimo0 == true && esprimo1 == true && esprimo2 == true && banderaprimo == false)
+                            {
+
+                                if(c==1)
+                                {
+                                    humCerdoprimo1 =7;
+                                    cout <<"El cerdo " << cerdoactual << " es el ganador por el bonus de los números primos" << endl;
+
+                                }
+                                else
+                                {
+
+                                    humCerdoprimo2 = 7;
+                                    cout <<"El cerdo " << cerdoactual << " es el ganador por el bonus de los números primos" << endl;
+
+                                }
+
+                                banderaprimo = true;
+
+
+                            }
+
 
                             bandera = false;
 
@@ -466,6 +871,61 @@ void jugar(int &mayorpuntosdevictoria, string &jugadorganador)
 
 
                             }
+                            for (int p = 1; p <= 6; p++)
+                            {
+
+                                if(vecrandnum[0] % p == 0)
+                                {
+                                    conprimo0 ++;
+                                }
+
+                                if(vecrandnum[1] % p == 0)
+                                {
+                                    conprimo1 ++;
+
+                                }
+                                if(vecrandnum[2]% p == 0)
+                                {
+                                    conprimo2++;
+
+                                }
+                            }
+
+                            if(conprimo0 == 2)
+                            {
+                                esprimo0 = true;
+                            }
+                            if(conprimo1 == 2)
+                            {
+                                esprimo1 = true;
+                            }
+                            if(conprimo2 == 2)
+                            {
+
+                                esprimo2 = true;
+                            }
+                            if(esprimo0 == true && esprimo1 == true && esprimo2 == true && banderaprimo == false)
+                            {
+
+                                if(c==1)
+                                {
+                                    humCerdoprimo1 =7;
+                                    cout <<"El cerdo " << cerdoactual << " es el ganador por el bonus de los números primos" << endl;
+
+                                }
+                                else
+                                {
+
+                                    humCerdoprimo2 = 7;
+                                    cout <<"El cerdo " << cerdoactual << " es el ganador por el bonus de los números primos" << endl;
+
+                                }
+
+                                banderaprimo = true;
+
+
+                            }
+
                             bandera = false;
 
 
@@ -496,6 +956,61 @@ void jugar(int &mayorpuntosdevictoria, string &jugadorganador)
                                 acutrufastotalesc2 = 0;
                                 acutrufasronda2 = 0;
                             }
+                            for (int p = 1; p <= 6; p++)
+                            {
+
+                                if(vecrandnum[0] % p == 0)
+                                {
+                                    conprimo0 ++;
+                                }
+
+                                if(vecrandnum[1] % p == 0)
+                                {
+                                    conprimo1 ++;
+
+                                }
+                                if(vecrandnum[2]% p == 0)
+                                {
+                                    conprimo2++;
+
+                                }
+                            }
+
+                            if(conprimo0 == 2)
+                            {
+                                esprimo0 = true;
+                            }
+                            if(conprimo1 == 2)
+                            {
+                                esprimo1 = true;
+                            }
+                            if(conprimo2 == 2)
+                            {
+
+                                esprimo2 = true;
+                            }
+                            if(esprimo0 == true && esprimo1 == true && esprimo2 == true && banderaprimo == false)
+                            {
+
+                                if(c==1)
+                                {
+                                    humCerdoprimo1 =7;
+                                    cout <<"El cerdo " << cerdoactual << " es el ganador por el bonus de los números primos" << endl;
+
+                                }
+                                else
+                                {
+
+                                    humCerdoprimo2 = 7;
+                                    cout <<"El cerdo " << cerdoactual << " es el ganador por el bonus de los números primos" << endl;
+
+                                }
+
+                                banderaprimo = true;
+
+
+                            }
+
 
                             bandera = false;
                             hundido = true;
@@ -526,15 +1041,17 @@ void jugar(int &mayorpuntosdevictoria, string &jugadorganador)
                             {
                                 if(c == 2) // si es la ronda 5 y el ultimo jugador, quiere decir que es la ultima ronda y jugada
                                 {
-                                system("pause");
+                                    system("pause");
 
-                                } else{
-                                cout << "Continúa el siguiente cerdo" << endl;
+                                }
+                                else
+                                {
+                                    cout << "Continúa el siguiente cerdo" << endl;
                                 }
                             }
                             else
                             {
-                             cout << "Continúa el siguiente cerdo" << endl;
+                                cout << "Continúa el siguiente cerdo" << endl;
                             }
 
 
@@ -545,19 +1062,21 @@ void jugar(int &mayorpuntosdevictoria, string &jugadorganador)
                         {
                             noContinuar = true;
 
-                           if(r == 5)
+                            if(r == 5)
                             {
                                 if(c == 2)
                                 {
-                                system("pause");
+                                    system("pause");
 
-                                } else{
-                                cout << "Continúa el siguiente cerdo" << endl;
+                                }
+                                else
+                                {
+                                    cout << "Continúa el siguiente cerdo" << endl;
                                 }
                             }
                             else
                             {
-                             cout << "Continúa el siguiente cerdo" << endl;
+                                cout << "Continúa el siguiente cerdo" << endl;
                             }
 
 
@@ -579,6 +1098,33 @@ void jugar(int &mayorpuntosdevictoria, string &jugadorganador)
                             noContinuar = true;
 
 
+                            if(r == 5)
+                            {
+                                if(c == 2)
+                                {
+                                    system("pause");
+
+                                }
+                                else
+                                {
+                                    cout << "Continúa el siguiente cerdo" << endl;
+                                }
+                            }
+                            else
+                            {
+                                cout << "Continúa el siguiente cerdo" << endl;
+                            }
+
+
+
+                        }
+                        else if((vecrandnum[1] == vecrandnum[2] && vecrandnum[1] != vecrandnum[0]) || (vecrandnum[0] == vecrandnum[2] && vecrandnum[0] != vecrandnum[1]) || (vecrandnum[0] == vecrandnum[1]                         && vecrandnum[0] != vecrandnum[2]))
+                        {
+
+                            if (vecrandnum[0] == 1 || vecrandnum[1] == 1 || vecrandnum[2] == 1)
+                            {
+                                noContinuar = true;
+
                                 if(r == 5)
                                 {
                                     if(c == 2)
@@ -598,31 +1144,6 @@ void jugar(int &mayorpuntosdevictoria, string &jugadorganador)
 
 
 
-                        }
-                        else if((vecrandnum[1] == vecrandnum[2] && vecrandnum[1] != vecrandnum[0]) || (vecrandnum[0] == vecrandnum[2] && vecrandnum[0] != vecrandnum[1]) || (vecrandnum[0] == vecrandnum[1]                         && vecrandnum[0] != vecrandnum[2]))
-                        {
-
-                            if (vecrandnum[0] == 1 || vecrandnum[1] == 1 || vecrandnum[2] == 1)
-                            {
-                                noContinuar = true;
-
-                                if(r == 5)
-                            {
-                                if(c == 2)
-                                {
-                                system("pause");
-
-                                } else{
-                                cout << "Continúa el siguiente cerdo" << endl;
-                                }
-                            }
-                            else
-                            {
-                             cout << "Continúa el siguiente cerdo" << endl;
-                            }
-
-
-
 
                             }
 
@@ -636,15 +1157,17 @@ void jugar(int &mayorpuntosdevictoria, string &jugadorganador)
                             {
                                 if(c == 2)
                                 {
-                                system("pause");
+                                    system("pause");
 
-                                } else{
-                                cout << "Continúa el siguiente cerdo" << endl;
+                                }
+                                else
+                                {
+                                    cout << "Continúa el siguiente cerdo" << endl;
                                 }
                             }
                             else
                             {
-                             cout << "Continúa el siguiente cerdo" << endl;
+                                cout << "Continúa el siguiente cerdo" << endl;
                             }
 
 
@@ -765,8 +1288,10 @@ void jugar(int &mayorpuntosdevictoria, string &jugadorganador)
     cout << " -------------------------------------------------------------------------------------------------------- " << endl;
     cout << " Cerdo codicioso       * " << cerdoCodicioso1 << " PDV (" << mayorlanzamientoc1 << " lanzamientos)          " << cerdoCodicioso2 << " PDV (" << mayorlanzamientoc2 << " lanzamientos)" << endl;
     cout << " -------------------------------------------------------------------------------------------------------- " << endl;
-    total1 = masTrufasc1 + cada50trufasc1 + oinksc1 + cerdoCodicioso1;
-    total2 = masTrufasc2 + cada50trufasc2 + oinksc2 + cerdoCodicioso2;
+    cout << " Humcerdo Primo                " << humCerdoprimo1 << "                     " <<  humCerdoprimo2                       << endl;
+    cout << " -------------------------------------------------------------------------------------------------------- " << endl;
+    total1 = masTrufasc1 + cada50trufasc1 + oinksc1 + cerdoCodicioso1 + humCerdoprimo1;
+    total2 = masTrufasc2 + cada50trufasc2 + oinksc2 + cerdoCodicioso2 + humCerdoprimo2;
 
 
     cout << " TOTAL                    " << total1  << " PDV                                       " << total2 << " PDV"  << endl;
