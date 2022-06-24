@@ -20,7 +20,7 @@ int main()
     int mayorpuntosdevictoria = 0;
     string jugadorganador;
 
-    char menu;
+    char menu, confirmacion;
 
     bool salir;
 
@@ -68,7 +68,29 @@ int main()
             break;
 
         case '0':
-            salir = true;
+            cout << "¿Está seguro que desea salir? S/N" << endl;
+            cin >> confirmacion;
+            confirmacion = toupper(confirmacion);
+            if(confirmacion == 'S')
+            {
+                salir = true;
+
+            }
+            else if(confirmacion == 'N')
+            {
+
+
+
+            }
+            else
+            {
+
+                cout << "opción incorrecta" << endl;
+                system("pause");
+
+
+            }
+
             break;
 
         default:
@@ -85,8 +107,8 @@ int main()
 
     } // fin del while menu
 
-     system("cls");
-     MostrarDespedida();
+    system("cls");
+    MostrarDespedida();
 
     return 0;
 }

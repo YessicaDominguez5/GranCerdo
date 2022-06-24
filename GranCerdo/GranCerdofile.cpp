@@ -167,7 +167,7 @@ void jugar(int &mayorpuntosdevictoria, string &jugadorganador)
                     }
 
 
-                    if( (acutrufastotalesc1 > 50 && acutrufastotalesc2 > 50 ) || hundido  ) //jugar con 3 dados
+                    if( (acutrufastotalesc1 > 50 && acutrufastotalesc2 > 50) || hundido  ) //jugar con 3 dados
                     {
 
                         conTres = true;
@@ -376,7 +376,7 @@ void jugar(int &mayorpuntosdevictoria, string &jugadorganador)
                             else if (vecrandnum[0] == 1 || vecrandnum[1] == 1 || vecrandnum[2] == 1)
                             {
 
-                                // 2 caras iguales y hay un as
+                                // 3 caras iguales y hay un as
 
                                 if (cerdoactual == cerdo1)
                                 {
@@ -485,14 +485,14 @@ void jugar(int &mayorpuntosdevictoria, string &jugadorganador)
                             if (cerdoactual == cerdo1)
                             {
                                 acutrufaslanzamientos = 0;
-                                acutrufastotalesc2 = acutrufastotalesc1;
+                                acutrufastotalesc2 += acutrufastotalesc1;
                                 acutrufastotalesc1 = 0;
                                 acutrufasronda1 = 0;
                             }
                             else
                             {
                                 acutrufaslanzamientos = 0;
-                                acutrufastotalesc1 = acutrufastotalesc2;
+                                acutrufastotalesc1 += acutrufastotalesc2;
                                 acutrufastotalesc2 = 0;
                                 acutrufasronda2 = 0;
                             }
@@ -522,8 +522,19 @@ void jugar(int &mayorpuntosdevictoria, string &jugadorganador)
 
                             noContinuar = true;
 
-                            if(r != 5 && c != 2){
+                            if(r == 5)
+                            {
+                                if(c == 2)
+                                {
+                                system("pause");
+
+                                } else{
                                 cout << "Continúa el siguiente cerdo" << endl;
+                                }
+                            }
+                            else
+                            {
+                             cout << "Continúa el siguiente cerdo" << endl;
                             }
 
 
@@ -534,8 +545,19 @@ void jugar(int &mayorpuntosdevictoria, string &jugadorganador)
                         {
                             noContinuar = true;
 
-                            if(r != 5 && c != 2){
+                           if(r == 5)
+                            {
+                                if(c == 2)
+                                {
+                                system("pause");
+
+                                } else{
                                 cout << "Continúa el siguiente cerdo" << endl;
+                                }
+                            }
+                            else
+                            {
+                             cout << "Continúa el siguiente cerdo" << endl;
                             }
 
 
@@ -557,21 +579,72 @@ void jugar(int &mayorpuntosdevictoria, string &jugadorganador)
                             noContinuar = true;
 
 
+                                if(r == 5)
+                                {
+                                    if(c == 2)
+                                    {
+                                        system("pause");
 
-                            if(r != 5 && c != 2){
-                                cout << "Continúa el siguiente cerdo" << endl;
-                            }
+                                    }
+                                    else
+                                    {
+                                        cout << "Continúa el siguiente cerdo" << endl;
+                                    }
+                                }
+                                else
+                                {
+                                    cout << "Continúa el siguiente cerdo" << endl;
+                                }
 
 
 
                         }
-                        else if ((vecrandnum[0] == 1) && (vecrandnum[1] == 1) && (vecrandnum[2] == 1))
+                        else if((vecrandnum[1] == vecrandnum[2] && vecrandnum[1] != vecrandnum[0]) || (vecrandnum[0] == vecrandnum[2] && vecrandnum[0] != vecrandnum[1]) || (vecrandnum[0] == vecrandnum[1]                         && vecrandnum[0] != vecrandnum[2]))
+                        {
+
+                            if (vecrandnum[0] == 1 || vecrandnum[1] == 1 || vecrandnum[2] == 1)
+                            {
+                                noContinuar = true;
+
+                                if(r == 5)
+                            {
+                                if(c == 2)
+                                {
+                                system("pause");
+
+                                } else{
+                                cout << "Continúa el siguiente cerdo" << endl;
+                                }
+                            }
+                            else
+                            {
+                             cout << "Continúa el siguiente cerdo" << endl;
+                            }
+
+
+
+
+                            }
+
+                        }
+                        else if ((vecrandnum[0] == 1) && (vecrandnum[1] == 1) && (vecrandnum[2] == 1)) // 3 ases
                         {
 
                             noContinuar = true;
 
-                            if(r != 5 && c != 2){
+                            if(r == 5)
+                            {
+                                if(c == 2)
+                                {
+                                system("pause");
+
+                                } else{
                                 cout << "Continúa el siguiente cerdo" << endl;
+                                }
+                            }
+                            else
+                            {
+                             cout << "Continúa el siguiente cerdo" << endl;
                             }
 
 
@@ -613,7 +686,7 @@ void jugar(int &mayorpuntosdevictoria, string &jugadorganador)
 
     } // for r
 
-     system("cls");
+    system("cls");
 
     cout<< "*************************************************************************" << endl;
     cout<< "*                                                                       *" << endl;
@@ -696,7 +769,7 @@ void jugar(int &mayorpuntosdevictoria, string &jugadorganador)
     total2 = masTrufasc2 + cada50trufasc2 + oinksc2 + cerdoCodicioso2;
 
 
-             cout << " TOTAL                    " << total1  << " PDV                                       " << total2 << " PDV"  << endl;
+    cout << " TOTAL                    " << total1  << " PDV                                       " << total2 << " PDV"  << endl;
     cout << "                                                                                                          " << endl;
     cout << "                                                                                                          " << endl;
 
@@ -704,7 +777,8 @@ void jugar(int &mayorpuntosdevictoria, string &jugadorganador)
     {
 
         cout << "EL GANADOR ES " << cerdo1 << " CON " << total1 << " PUNTOS DE VICTORIA" << endl << endl;
-        if(total1 > mayorpuntosdevictoria){
+        if(total1 > mayorpuntosdevictoria)
+        {
 
             jugadorganador = cerdo1;
             mayorpuntosdevictoria = total1;
@@ -716,7 +790,8 @@ void jugar(int &mayorpuntosdevictoria, string &jugadorganador)
     {
         cout << "EL GANADOR ES " << cerdo2 << " CON " << total2 << " PUNTOS DE VICTORIA" << endl << endl;
 
-        if(total2 > mayorpuntosdevictoria){
+        if(total2 > mayorpuntosdevictoria)
+        {
 
             jugadorganador = cerdo2;
             mayorpuntosdevictoria = total2;
@@ -832,7 +907,8 @@ int QuienEmpieza()
 
         }
 
-        if(salir == true){
+        if(salir == true)
+        {
             cout<< " Hubo un empate! Se volverá a tirar los dados!"<<endl;
             cout<< "_________________________________________________"<<endl;
             system("pause");
@@ -1010,7 +1086,8 @@ void MostrarDados( int num)
     }
 }
 
-void MostrarDespedida(){
+void MostrarDespedida()
+{
 
     cout << "*********************************************************************************************************" << endl;
     cout << "*********************************************************************************************************" << endl;
@@ -1035,39 +1112,44 @@ void MostrarDespedida(){
 
 }
 
-void MostrarEstadistica(int mayorpuntosdevictoria,string jugadorganador){
+void MostrarEstadistica(int mayorpuntosdevictoria,string jugadorganador)
+{
 
-if(mayorpuntosdevictoria == 0){
+    if(mayorpuntosdevictoria == 0)
+    {
 
-            system("cls");
+        system("cls");
 
-            cout << "No se ha jugado una partida hasta el momento" << endl;
+        cout << "No se ha jugado una partida hasta el momento" << endl;
 
-            sleep(3);
+        sleep(3);
 
-        } else{
-            system("cls");
+    }
+    else
+    {
+        system("cls");
 
-    cout << "*********************************************************************************************************" << endl;
-    cout << "*********************************************************************************************************" << endl;
-    cout << "**                                                                                                     **" << endl;
-    cout << "**                                                                                                     **" << endl;
-    cout << "**                                                                                                     **" << endl;
-    cout << "**                                                                                                     **" << endl;
-    cout << "**              El jugador que obtuvo más puntos de victoria es: " << jugadorganador << "                                    **" << endl;
-    cout << "**                                                                                                     **" << endl;
-    cout << "**                                                                                                     **" << endl;
-    cout << "**                  con " << mayorpuntosdevictoria << " puntos de victoria.                                                         **" << endl;
-    cout << "**                                                                                                     **" << endl;
-    cout << "**                                                                                                     **" << endl;
-    cout << "**                                                                                                     **" << endl;
-    cout << "**                                                                                                     **" << endl;
-    cout << "*********************************************************************************************************" << endl;
-    cout << "*********************************************************************************************************" << endl;
+        cout << "*********************************************************************************************************" << endl;
+        cout << "*********************************************************************************************************" << endl;
+        cout << "                                                                                                         " << endl;
+        cout << "                                                                                                         " << endl;
+        cout << "                                                                                                         " << endl;
+        cout << "                                                                                                         " << endl;
+        cout << "              El jugador que obtuvo más puntos de victoria es: " << jugadorganador << "                  " << endl;
+        cout << "                                                                                                         " << endl;
+        cout << "                                                                                                         " << endl;
+        cout << "                  con " << mayorpuntosdevictoria << " puntos de victoria.                                " << endl;
+        cout << "                                                                                                         " << endl;
+        cout << "                                                                                                         " << endl;
+        cout << "                                                                                                         " << endl;
+        cout << "                                                                                                         " << endl;
+        cout << "*********************************************************************************************************" << endl;
+        cout << "*********************************************************************************************************" << endl;
 
-    sleep(3);
+        sleep(3);
 
-}}
+    }
+}
 
 
 
