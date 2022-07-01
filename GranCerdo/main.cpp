@@ -67,6 +67,14 @@ int main()
 
             break;
 
+        case '4':
+
+            Mostrarinstrucciones();
+
+            break;
+
+
+
         case '0':
             cout << "¿Está seguro que desea salir? S/N" << endl;
             cin >> confirmacion;

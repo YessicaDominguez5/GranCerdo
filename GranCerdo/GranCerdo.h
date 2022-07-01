@@ -23,6 +23,7 @@ void MostrarJugada(string cerdoactual, string cerdo1, int contlanzamientos1, int
 void MostrarDados(int num);
 
 void MostrarEstadistica(int mayorpuntosdevictoria,string jugadorganador);
+void Mostrarinstrucciones();
 void MostrarDespedida();
 
 

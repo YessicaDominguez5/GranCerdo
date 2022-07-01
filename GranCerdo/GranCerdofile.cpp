@@ -48,6 +48,7 @@ void MostrarMenu()
     cout << "**                                          1 - JUGAR                                                  **" << endl;
     cout << "**                                          2 - ESTADÍSTICAS                                           **" << endl;
     cout << "**                                          3 - CERDITOS                                               **" << endl;
+    cout << "**                                          4 - INSTRUCCIONES                                          **" << endl;
     cout << "**                                                                                                     **" << endl;
     cout << "**                      ----------------------------------------------------------                     **" << endl;
     cout << "**                                          0 - SALIR                                                  **" << endl;
@@ -56,6 +57,48 @@ void MostrarMenu()
     cout << "*********************************************************************************************************" << endl;
     cout << "*********************************************************************************************************" << endl;
 
+
+}
+
+void Mostrarinstrucciones(){
+
+    system("cls");
+
+            cout << "............................................................................................." << endl;
+            cout << endl << "                         INSTRUCCIONES " << endl;
+            cout << "............................................................................................." << endl;
+            cout << "  El juego está compuesto por cinco rondas por jugador y en cada ronda el jugador dispone" << endl;
+            cout << "  de ilimitados lanzamientos." << endl << endl;
+
+            cout << "  En cada lanzamiento el jugador tira los dados y se analiza los valores de las caras. " << endl << endl;
+
+            cout << "  * Si las caras son distintas entre sí y ninguna de ellas es un as. Entonces el cerdo" << endl;
+            cout << "  acumula trufas según la suma de las caras al total de la ronda." << endl;
+            cout << "  Por ejemplo: 5 y 3. Acumula 8 trufas. Luego, puede decidir si volver a lanzar los dados" << endl;
+            cout << "  o plantarse y ceder el turno al otro cerdo." << endl << endl;
+
+            cout << "  * Si las caras son iguales entre sí y no son ases. Entonces el cerdo hizo un Oink y " << endl;
+            cout << "  acumula trufas por el doble de la suma de las caras al total de la ronda." << endl;
+            cout << "  Por ejemplo: 4 y 4. Acumula 16 trufas. También, está obligado a lanzar los dados una vez" << endl << endl;
+
+            cout << "  * Si las caras son distintas entre sí y hay un as entre ellas. Pierde todas las trufas que " << endl;
+            cout << "  venía acumulando en la ronda actual y automáticamente le cede el turno al otro cerdo." << endl << endl;
+
+            cout << "  * Si dos de las caras son iguales entre sí y son ases. El cerdo se hunde en el barro y" << endl;
+            cout << "  pierde todas las trufas que venía acumulando en las rondas anteriores y automáticamente" << endl;
+            cout << "  le cede el turno al otro cerdo." << endl << endl;
+
+            cout << "  * Si se está lanzando con tres dados y tres de las caras son iguales entre sí y son ases." << endl;
+            cout << "  Aplica la misma quita de puntos que en el caso anterior pero dichos puntos se acumulan al" << endl;
+            cout << "  otro cerdo en dicha ronda." << endl << endl;
+
+            cout << "  El juego utiliza dos dados hasta que ambos cerdos superen (cada uno) las 50 trufas o alguno" << endl;
+            cout << "  de ellos se hunda en el barro. A partir de allí, el juego se desarrolla con tres dados por" << endl;
+            cout << "  lanzamiento (esto puede ocurrir incluso en el transcurso de una ronda)." << endl << endl;
+            cout << "............................................................................................." << endl;
+
+            system("pause");
+            system("cls");
 
 }
 
@@ -1288,7 +1331,7 @@ void jugar(int &mayorpuntosdevictoria, string &jugadorganador)
     cout << " -------------------------------------------------------------------------------------------------------- " << endl;
     cout << " Cerdo codicioso       * " << cerdoCodicioso1 << " PDV (" << mayorlanzamientoc1 << " lanzamientos)          " << cerdoCodicioso2 << " PDV (" << mayorlanzamientoc2 << " lanzamientos)" << endl;
     cout << " -------------------------------------------------------------------------------------------------------- " << endl;
-    cout << " Humcerdo Primo                " << humCerdoprimo1 << "                     " <<  humCerdoprimo2                       << endl;
+    cout << " Humcerdo Primo                " << humCerdoprimo1 << " PDV                   " <<  humCerdoprimo2 << " PDV        " << endl;
     cout << " -------------------------------------------------------------------------------------------------------- " << endl;
     total1 = masTrufasc1 + cada50trufasc1 + oinksc1 + cerdoCodicioso1 + humCerdoprimo1;
     total2 = masTrufasc2 + cada50trufasc2 + oinksc2 + cerdoCodicioso2 + humCerdoprimo2;
